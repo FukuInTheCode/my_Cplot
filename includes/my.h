@@ -2,6 +2,5 @@
 #define MYH
 
 #include <stdio.h>
-#include "./test.h"
-
-void hello(void);
+#include <stdint.h>
+#include "my_plot.h"
