@@ -3,7 +3,7 @@
 int main(void)
 {
     my_colors_t colors = {.background = sfBlack};
-    double x[] = {1, 2, 3};
+    double x[] = {10, -30, 3};
     double y[] = {30, 20, -10};
     my_plot_t plot = {.xs = x, .ys = y, .num = 3};
     char *title = "test";
