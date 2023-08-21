@@ -7,6 +7,8 @@ int main(void)
     double y[] = {3, 2, 1};
     my_plot_t plot = {.xs = x, .ys = y, .num = 3};
 
+    my_plot_init(&plot);
+
     char *title = "test";
     sfEvent event;
     my_fig_t fig1 = {.title = title, .colors = &colors, .event = &event};

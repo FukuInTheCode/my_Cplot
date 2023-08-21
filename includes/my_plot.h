@@ -22,7 +22,7 @@ typedef struct my_colors {
 } my_colors_t;
 
 typedef struct my_plot {
-    uint32_t num;
+    size_t num;
     double *xs;
     double *ys;
     double max_x;
@@ -33,3 +33,4 @@ typedef struct my_plot {
 
 void my_fig_create(my_fig_t *fig);
 void my_fig_show(my_fig_t *fig);
+void my_plot_init(my_plot_t *plot);
