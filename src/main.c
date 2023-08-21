@@ -1,22 +1,14 @@
-#include "../includes/SFML/Graphics.h"
+#include "../includes/my.h"
 
 int main(void)
 {
-    sfVideoMode mode = {2000, 600, 32};
-    sfRenderWindow *window = sfRenderWindow_create(mode, "SFML window", \
-        sfResize | sfClose, NULL);
+    my_colors_t colors = {.background = sfBlack};
+    char *title = "test";
     sfEvent event;
+    my_fig_t fig1 = {.title = title, .colors = &colors, .event = &event};
 
-    sfMouseButton left = sfMouseLeft;
+    my_fig_create(&fig1);
+    my_fig_show(&fig1);
 
-    while (sfRenderWindow_isOpen(window)) {
-        while (sfRenderWindow_pollEvent(window, &event)) {
-            if (event.type == sfEvtClosed)
-                sfRenderWindow_close(window);
-        }
-        sfRenderWindow_clear(window, sfBlack);
-        sfRenderWindow_display(window);
-    }
-    sfRenderWindow_destroy(window);
     return 0;
 }
