@@ -11,11 +11,11 @@ LIB_SRC = $(wildcard ./src/func/*.c) \
 
 CSFML	= -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
 
-LIB_OBJS = $(patsubst %.c, %.o, $(LIB_SRC))
+LIB_OBJS = $(wildcard ./src/func/*.o)
 
 all: archive build clean
 
-archive: build_obj
+archive: build_obj $(LIB_OBJS)
 	ar -rcs C:\Users\ADMIN\Code\my_libs\lib$(NAME).a $(LIB_OBJS)
 
 build:
