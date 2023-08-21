@@ -22,13 +22,13 @@ typedef struct my_colors {
 } my_colors_t;
 
 typedef struct my_plot {
-    int32_t *xs;
-    int32_t *ys;
     uint32_t num;
-    int32_t max_x;
-    int32_t min_x;
-    int32_t max_y;
-    int32_t min_y;
+    double *xs;
+    double *ys;
+    double max_x;
+    double min_x;
+    double max_y;
+    double min_y;
 } my_plot_t;
 
 void my_fig_create(my_fig_t *fig);

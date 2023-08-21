@@ -2,7 +2,8 @@
     "C_Cpp.default.compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe",
     "files.associations": {
         "my.h": "c",
-        "graphics.h": "c"
+        "graphics.h": "c",
+        "my_plot_init.C": "cpp"
     },
     "epilinter.tokenizer_address": "ws://54.36.183.139:8081"
 }
