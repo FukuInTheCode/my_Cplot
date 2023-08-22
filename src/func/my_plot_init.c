@@ -31,8 +31,12 @@ static double this_find_min(double *arr, size_t size)
 
 void my_plot_init(my_plot_t *plot)
 {
-    plot->max_x = this_find_max(plot->xs, plot->num);
-    plot->max_y = this_find_max(plot->ys, plot->num);
     plot->min_x = this_find_min(plot->xs, plot->num);
     plot->min_y = this_find_min(plot->ys, plot->num);
+    plot->ratio.x /= this_find_max(plot->xs, plot->num) - \
+                            plot->min_x;
+    plot->ratio.y /= this_find_max(plot->ys, plot->num) - \
+                            plot->min_y;
+    plot->min_x = my_abs(plot->min_x) * plot->ratio.x;
+    plot->min_y = my_abs(plot->min_y) * plot->ratio.y;
 }

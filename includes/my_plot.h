@@ -26,10 +26,9 @@ typedef struct my_plot {
     size_t num;
     double *xs;
     double *ys;
-    double max_x;
     double min_x;
-    double max_y;
     double min_y;
+    sfVector2f ratio;
 } my_plot_t;
 
 void my_fig_create(my_fig_t *fig);
