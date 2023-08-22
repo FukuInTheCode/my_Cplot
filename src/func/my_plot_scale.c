@@ -29,8 +29,15 @@ static double this_find_min(double *arr, size_t size)
     return min_value;
 }
 
-void my_plot_init(my_plot_t *plot)
+void my_plot_calc_scale(my_fig_t *fig)
 {
+    my_plot_t *plot = fig->plot;
+
+    sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
+
+    plot->ratio.x = tmp_vec.x - 20;
+    plot->ratio.y = tmp_vec.y - 20;
+
     plot->min_x = this_find_min(plot->xs, plot->num);
     plot->min_y = this_find_min(plot->ys, plot->num);
     plot->ratio.x /= this_find_max(plot->xs, plot->num) - \

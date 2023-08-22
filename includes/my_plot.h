@@ -20,6 +20,7 @@ typedef struct my_fig {
 
 typedef struct my_colors {
     sfColor background;
+    sfColor point;
 } my_colors_t;
 
 typedef struct my_plot {
@@ -33,5 +34,4 @@ typedef struct my_plot {
 
 void my_fig_create(my_fig_t *fig);
 void my_fig_show(my_fig_t *fig);
-void my_plot_init(my_plot_t *plot);
-void my_fig_plot(my_fig_t *fig);
+void my_plot_calc_scale(my_fig_t *fig);
