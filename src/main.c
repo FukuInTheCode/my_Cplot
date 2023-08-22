@@ -25,7 +25,7 @@ int main(void)
     size_t n = 100;
     double x[n];
     double y[n];
-    generateArrays(n, x, y, 0, 100, fun);
+    generateArrays(n, x, y, -100, 100, fun);
 
     my_plot_t plot = {.xs = x, .ys = y, .num = n};
     char *title = "my_plot";

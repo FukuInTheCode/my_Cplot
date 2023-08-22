@@ -28,11 +28,11 @@ typedef struct my_plot {
     size_t num;
     double *xs;
     double *ys;
-    double min_x;
-    double min_y;
+    double margin_left;
+    double margin_up;
     sfVector2f ratio;
 } my_plot_t;
 
 void my_fig_create(my_fig_t *fig);
 void my_fig_show(my_fig_t *fig);
-void my_plot_calc_scale(my_fig_t *fig);
+void my_fig_calc_scale(my_fig_t *fig);

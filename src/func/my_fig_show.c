@@ -2,15 +2,16 @@
 
 static void my_plot(my_fig_t *fig)
 {
-    my_plot_calc_scale(fig);
+    my_fig_calc_scale(fig);
+    printf("%f\n", fig->plot->margin_left);
     for (size_t i = 0; i < fig->plot->num; i++) {
         sfCircleShape *current_point = sfCircleShape_create();
         sfCircleShape_setRadius(current_point, fig->ui->point_radius);
         sfVector2f pos = {
-            .x = fig->plot->xs[i] * fig->plot->ratio.x + fig->plot->min_x,
+            .x = fig->plot->xs[i] * fig->plot->ratio.x + fig->plot->margin_left,
             .y =  sfRenderWindow_getSize(fig->window).y - \
                     fig->plot->ys[i] * fig->plot->ratio.y - fig->ui->point_radius * 2 -\
-                    fig->plot->min_y
+                    fig->plot->margin_up
         };
 
     sfCircleShape_setFillColor(current_point, fig->ui->point);
