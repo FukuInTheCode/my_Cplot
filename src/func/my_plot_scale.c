@@ -37,9 +37,9 @@ void my_fig_calc_scale(my_fig_t *fig)
     double min_x = this_find_min(fig->plot->xs, fig->plot->num);
     double min_y = this_find_min(fig->plot->ys, fig->plot->num);
     fig->plot->ratio.x = tmp_vec.x - fig->ui->point_radius * 2 -\
-                            (min_y != 0 ? 0 : 40);
-    fig->plot->ratio.y = tmp_vec.y - fig->ui->point_radius * 2 -\
                             (min_x != 0 ? 0 : 40);
+    fig->plot->ratio.y = tmp_vec.y - fig->ui->point_radius * 2 -\
+                            (min_y != 0 ? 0 : 40);
     fig->plot->ratio.x /= this_find_max(fig->plot->xs, fig->plot->num) - min_x;
     fig->plot->ratio.y /= this_find_max(fig->plot->ys, fig->plot->num) - min_y;
     fig->plot->margin_left = my_abs(min_x) * fig->plot->ratio.x;

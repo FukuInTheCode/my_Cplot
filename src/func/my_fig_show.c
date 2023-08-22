@@ -8,14 +8,16 @@ static void my_plot_point(my_fig_t *fig)
         sfCircleShape_setRadius(current_point, fig->ui->point_radius);
         sfVector2f pos = {
             .x = fig->plot->xs[i] * fig->plot->ratio.x +\
-                    fig->plot->margin_left,
+                    fig->plot->margin_left - fig->ui->point_radius,
             .y = sfRenderWindow_getSize(fig->window).y - \
                     fig->plot->ys[i] * fig->plot->ratio.y -\
-                    fig->ui->point_radius * 2 - fig->plot->margin_up
+                    fig->ui->point_radius * 1 - fig->plot->margin_up
         };
-
+        printf("%f, %f\n", fig->plot->axe2, fig->plot->axe1);
+        if (fig->plot->axe2 == 40) pos.x += 40;
+        if (fig->plot->axe1 == sfRenderWindow_getSize(fig->window).y - 40)
+            pos.y -= 40;
         sfCircleShape_setFillColor(current_point, fig->plot->xs[i] != 0 ? fig->ui->point : sfBlue);
-
         sfCircleShape_setPosition(current_point, pos);
         sfRenderWindow_drawCircleShape(fig->window, current_point, NULL);
         sfCircleShape_destroy(current_point);
@@ -26,14 +28,14 @@ static void my_plot_axes(my_fig_t *fig)
 {
     sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
     sfVertex line[] = {
-        {{0, fig->plot->axe2}, sfWhite},
-        {{tmp_vec.x, fig->plot->axe2}, sfWhite}
+        {{0, fig->plot->axe1}, sfWhite},
+        {{tmp_vec.x, fig->plot->axe1}, sfWhite}
     };
 
     sfRenderWindow_drawPrimitives(fig->window, line, 2, sfLines, NULL);
     sfVertex line2[] = {
-        {{fig->plot->axe1, 0}, sfWhite},
-        {{fig->plot->axe1, tmp_vec.y}, sfWhite}
+        {{fig->plot->axe2, 0}, sfWhite},
+        {{fig->plot->axe2, tmp_vec.y}, sfWhite}
     };
 
     sfRenderWindow_drawPrimitives(fig->window, line2, 2, sfLines, NULL);
