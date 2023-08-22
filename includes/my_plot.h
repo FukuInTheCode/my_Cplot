@@ -31,6 +31,8 @@ typedef struct my_plot {
     double margin_left;
     double margin_up;
     sfVector2f ratio;
+    double axe1;
+    double axe2;
 } my_plot_t;
 
 void my_fig_create(my_fig_t *fig);

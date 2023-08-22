@@ -16,16 +16,19 @@ static void generateArrays(int n, double x[], double y[], double start, double e
 }
 
 static double fun(double x) {
-    return x * x;
+    return x * x * x;
 }
 
 int main(void)
 {
     my_ui_t ui = {.background = sfBlack, .point = sfRed, .point_radius = 10};
-    size_t n = 100;
+    size_t n = 20;
     double x[n];
     double y[n];
-    generateArrays(n, x, y, -100, 100, fun);
+    generateArrays(n, x, y, -20, 20, fun);
+
+    for (size_t i = 0; i < n; ++i)
+        printf("%f\n", x[i]);
 
     my_plot_t plot = {.xs = x, .ys = y, .num = n};
     char *title = "my_plot";
