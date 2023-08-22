@@ -3,7 +3,15 @@
     "files.associations": {
         "my.h": "c",
         "graphics.h": "c",
-        "my_plot_init.C": "cpp"
+        "my_plot_init.C": "cpp",
+        "vertex.h": "c",
+        "text.h": "c",
+        "sprite.h": "c",
+        "shader.h": "c",
+        "shape.h": "c",
+        "color.h": "c",
+        "export.h": "c",
+        "vector2.h": "c"
     },
     "epilinter.tokenizer_address": "ws://54.36.183.139:8081"
 }

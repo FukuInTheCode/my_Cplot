@@ -7,21 +7,22 @@
 
 #define SCALE 2
 
-typedef struct my_colors my_colors_t;
+typedef struct my_ui my_ui_t;
 typedef struct my_plot my_plot_t;
 
 typedef struct my_fig {
     sfRenderWindow *window;
     char *title;
     sfEvent *event;
-    my_colors_t *colors;
+    my_ui_t *ui;
     my_plot_t *plot;
 } my_fig_t;
 
-typedef struct my_colors {
+typedef struct my_ui {
     sfColor background;
     sfColor point;
-} my_colors_t;
+    double point_radius;
+} my_ui_t;
 
 typedef struct my_plot {
     size_t num;

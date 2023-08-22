@@ -21,16 +21,16 @@ static double fun(double x) {
 
 int main(void)
 {
-    my_colors_t colors = {.background = sfBlack};
+    my_ui_t ui = {.background = sfBlack, .point = sfRed, .point_radius = 10};
     size_t n = 100;
     double x[n];
     double y[n];
     generateArrays(n, x, y, 0, 100, fun);
 
     my_plot_t plot = {.xs = x, .ys = y, .num = n};
-    char *title = "test";
+    char *title = "my_plot";
     sfEvent event;
-    my_fig_t fig1 = {.title = title, .colors = &colors, .event = &event, .plot = &plot};
+    my_fig_t fig1 = {.title = title, .ui = &ui, .event = &event, .plot = &plot};
 
     my_fig_create(&fig1);
     my_fig_show(&fig1);

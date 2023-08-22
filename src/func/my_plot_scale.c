@@ -35,8 +35,8 @@ void my_plot_calc_scale(my_fig_t *fig)
 
     sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
 
-    plot->ratio.x = tmp_vec.x - 20;
-    plot->ratio.y = tmp_vec.y - 20;
+    plot->ratio.x = tmp_vec.x - fig->ui->point_radius * 2;
+    plot->ratio.y = tmp_vec.y - fig->ui->point_radius * 2;
 
     plot->min_x = this_find_min(plot->xs, plot->num);
     plot->min_y = this_find_min(plot->ys, plot->num);
