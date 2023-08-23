@@ -15,8 +15,8 @@ static void my_plot_point(my_fig_t *fig)
         };
         if (fig->plot->axe2 == 40) pos.x += 40;
         if (fig->plot->axe1 == sfRenderWindow_getSize(fig->window).y - 40)
-            pos.y -= 40;
-        sfCircleShape_setFillColor(current_point, fig->plot->xs[i] != 0 ? fig->ui->point : sfBlue);
+            pos.y -= 40 - fig->ui->point_radius * 2;
+        sfCircleShape_setFillColor(current_point, fig->plot->ys[i] != 0 ? fig->ui->point : sfBlue);
         sfCircleShape_setPosition(current_point, pos);
         sfRenderWindow_drawCircleShape(fig->window, current_point, NULL);
         sfCircleShape_destroy(current_point);
