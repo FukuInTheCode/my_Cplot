@@ -38,12 +38,13 @@ void my_fig_calc_scale(my_fig_t *fig)
     double min_y = this_find_min(fig->plot->ys, fig->plot->num);
     fig->plot->ratio.x = tmp_vec.x - fig->ui->point_radius * 2 -\
                             (min_x != 0 ? 0 : 40);
-    fig->plot->ratio.y = tmp_vec.y - fig->ui->point_radius * 2 -\
+    fig->plot->ratio.y = tmp_vec.y - fig->ui->point_radius * 3 -\
                             (min_y != 0 ? 0 : 40);
     fig->plot->ratio.x /= this_find_max(fig->plot->xs, fig->plot->num) - min_x;
     fig->plot->ratio.y /= this_find_max(fig->plot->ys, fig->plot->num) - min_y;
     fig->plot->margin_left = my_abs(min_x) * fig->plot->ratio.x;
     fig->plot->axe2 = min_x != 0 ? fig->plot->margin_left : 40;
+    fig->plot->axe2 += fig->ui->point_radius;
     fig->plot->margin_up = my_abs(min_y) * fig->plot->ratio.y;
     fig->plot->axe1 -= min_y != 0 ? (fig->ui->point_radius * 2 +\
                             fig->plot->margin_up) : 40;

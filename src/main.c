@@ -16,16 +16,16 @@ static void generateArrays(int n, double x[], double y[], double start, double e
 }
 
 static double fun(double x) {
-    return x * x;
+    return x * x * x;
 }
 
 int main(void)
 {
     my_ui_t ui = {.background = sfBlack, .point = sfRed, .point_radius = 10};
-    size_t n = 20;
+    size_t n = 100;
     double x[n];
     double y[n];
-    generateArrays(n, x, y, 0, 20, fun);
+    generateArrays(n, x, y, -49, 50, fun);
 
     for (size_t i = 0; i < n; ++i)
         printf("%f\n", x[i]);
