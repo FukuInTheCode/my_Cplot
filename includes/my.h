@@ -8,3 +8,4 @@
 #include <stdint.h>
 #include "my_plot.h"
 
+typedef double (*MathFunction)(double);

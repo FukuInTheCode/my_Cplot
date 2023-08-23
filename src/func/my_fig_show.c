@@ -16,28 +16,12 @@ static void my_plot_point(my_fig_t *fig)
         if (fig->plot->axe2 == 40 + fig->ui->point_radius) pos.x += 40;
         if (fig->plot->axe1 == sfRenderWindow_getSize(fig->window).y - 40)
             pos.y -= 40 - fig->ui->point_radius * 2;
-        sfCircleShape_setFillColor(current_point, fig->plot->ys[i] != 0 ? fig->ui->point : sfBlue);
+        sfCircleShape_setFillColor(current_point, fig->plot->ys[i] != 0 ?\
+                                    fig->ui->point : sfBlue);
         sfCircleShape_setPosition(current_point, pos);
         sfRenderWindow_drawCircleShape(fig->window, current_point, NULL);
         sfCircleShape_destroy(current_point);
     }
-}
-
-static void my_plot_axes(my_fig_t *fig)
-{
-    sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
-    sfVertex line[] = {
-        {{0, fig->plot->axe1}, sfWhite},
-        {{tmp_vec.x, fig->plot->axe1}, sfWhite}
-    };
-
-    sfRenderWindow_drawPrimitives(fig->window, line, 2, sfLines, NULL);
-    sfVertex line2[] = {
-        {{fig->plot->axe2, 0}, sfWhite},
-        {{fig->plot->axe2, tmp_vec.y}, sfWhite}
-    };
-
-    sfRenderWindow_drawPrimitives(fig->window, line2, 2, sfLines, NULL);
 }
 
 void my_fig_show(my_fig_t *fig)
