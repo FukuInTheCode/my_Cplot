@@ -13,7 +13,7 @@ static void my_plot_point(my_fig_t *fig)
                     fig->plot->ys[i] * fig->plot->ratio.y -\
                     fig->ui->point_radius * 3 - fig->plot->margin_up
         };
-        if (fig->plot->axe2 == 40) pos.x += 40;
+        if (fig->plot->axe2 == 40 + fig->ui->point_radius) pos.x += 40;
         if (fig->plot->axe1 == sfRenderWindow_getSize(fig->window).y - 40)
             pos.y -= 40 - fig->ui->point_radius * 2;
         sfCircleShape_setFillColor(current_point, fig->plot->ys[i] != 0 ? fig->ui->point : sfBlue);

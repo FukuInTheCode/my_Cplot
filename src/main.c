@@ -16,19 +16,27 @@ static void generateArrays(int n, double x[], double y[], double start, double e
 }
 
 static double fun(double x) {
-    return x * (x - 22) * (x + 10);
+    double sineComponent = sin(5 * x);
+    double cosineComponent = cos(3 * x);
+    double exponentialComponent = exp(-0.2 * x * x);
+    double linearComponent = -0.5 * x;
+
+    double result = 1 * sineComponent + 0.5 * cosineComponent + 0.2 * exponentialComponent + linearComponent;
+
+    return result;
 }
+
 
 int main(void)
 {
     my_ui_t ui = {.background = sfBlack, .point = sfRed, .point_radius = 10};
-    size_t n = 100;
+    size_t n = 10000;
     double x[n];
     double y[n];
-    generateArrays(n, x, y, -49, 50, fun);
+    generateArrays(n, x, y, -10, 50, fun);
 
-    for (size_t i = 0; i < n; ++i)
-        printf("%f\n", x[i]);
+    // for (size_t i = 0; i < n; ++i)
+    //     printf("%f, %f\n", x[i], y[i]);
 
     my_plot_t plot = {.xs = x, .ys = y, .num = n};
     char *title = "my_plot";
