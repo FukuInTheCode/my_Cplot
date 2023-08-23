@@ -15,7 +15,7 @@ static void generateArrays(int n, double x[], double y[], double start,\
 }
 
 static double fun(double x) {
-    return x * x;
+    return x * x - 25;
 }
 
 
@@ -25,7 +25,7 @@ int main(void)
     size_t n = 100;
     double x[n];
     double y[n];
-    generateArrays(n, x, y, -5, 5, fun);
+    generateArrays(n, x, y, -49, 50, fun);
 
     // for (size_t i = 0; i < n; ++i)
     //     printf("%f, %f\n", x[i], y[i]);

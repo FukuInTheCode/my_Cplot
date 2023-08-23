@@ -29,6 +29,14 @@ static double this_find_min(double *arr, size_t size)
     return min_value;
 }
 
+static void set_extreme_values(my_fig_t *fig)
+{
+    fig->plot->min_x = this_find_min(fig->plot->xs, fig->plot->num);
+    fig->plot->max_x = this_find_max(fig->plot->xs, fig->plot->num);
+    fig->plot->min_y = this_find_min(fig->plot->ys, fig->plot->num);
+    fig->plot->max_y = this_find_max(fig->plot->ys, fig->plot->num);
+}
+
 void my_fig_calc_scale(my_fig_t *fig)
 {
     sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
@@ -49,3 +57,4 @@ void my_fig_calc_scale(my_fig_t *fig)
     fig->plot->axe1 -= min_y != 0 ? (fig->ui->point_radius * 2 +\
                             fig->plot->margin_up) : 40;
 }
+

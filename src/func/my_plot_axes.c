@@ -1,9 +1,9 @@
 #include "../../includes/my.h"
 
-static void my_plot_axes_graduation(my_fig_t *fig)
-{
-    
-}
+// static void my_plot_axes_graduation(my_fig_t *fig)
+// {
+
+// }
 
 void my_plot_axes(my_fig_t *fig)
 {

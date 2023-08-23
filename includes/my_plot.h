@@ -33,6 +33,10 @@ typedef struct my_plot {
     sfVector2f ratio;
     double axe1;
     double axe2;
+    double min_x;
+    double max_x;
+    double min_y;
+    double max_y;
 } my_plot_t;
 
 void my_fig_create(my_fig_t *fig);
