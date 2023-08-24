@@ -28,9 +28,7 @@ void my_fig_show(my_fig_t *fig)
 {
     while (sfRenderWindow_isOpen(fig->window)) {
         while (sfRenderWindow_pollEvent(fig->window, fig->event)) {
-            if (fig->event->type == sfEvtClosed){
-                sfRenderWindow_close(fig->window);
-            }
+            my_fig_handle_event(fig);
         }
         sfRenderWindow_clear(fig->window, fig->ui->background);
         my_plot_point(fig);

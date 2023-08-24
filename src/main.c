@@ -36,7 +36,7 @@ int main(void)
 
     my_fig_create(&fig1);
     my_fig_show(&fig1);
-    my_fig_free(&fig1);
+    // my_fig_free(&fig1);
 
     return 0;
 }
