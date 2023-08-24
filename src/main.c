@@ -36,10 +36,7 @@ int main(void)
 
     my_fig_create(&fig1);
     my_fig_show(&fig1);
-    printf("max_x: %lf\n", fig1.plot->max_x);
-    printf("min_y: %lf\n", fig1.plot->min_y);
-    printf("max_y: %lf\n", fig1.plot->max_y);
-    printf("min_x: %lf\n", fig1.plot->min_x);
+    my_fig_free(&fig1);
 
     return 0;
 }
