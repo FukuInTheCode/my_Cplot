@@ -8,10 +8,10 @@ static void my_plot_point(my_fig_t *fig)
         sfCircleShape_setRadius(current_point, fig->ui->point_radius);
         sfVector2f pos = {
             .x = fig->plot->xs[i] * fig->plot->ratio.x +\
-                    fig->plot->margin_hor,
+                    fig->plot->hor_shift,
             .y = sfRenderWindow_getSize(fig->window).y - \
                     fig->plot->ys[i] * fig->plot->ratio.y -\
-                    fig->ui->point_radius * 3 - fig->plot->margin_ver
+                    fig->ui->point_radius * 3 - fig->plot->ver_shift
         };
         if (fig->plot->axe2 == 40 + fig->ui->point_radius) pos.x += 40;
         if (fig->plot->axe1 == sfRenderWindow_getSize(fig->window).y - 40)
@@ -30,6 +30,7 @@ void my_fig_show(my_fig_t *fig)
         while (sfRenderWindow_pollEvent(fig->window, fig->event)) {
             my_fig_handle_event(fig);
         }
+        my_plot_handle_mouse(fig);
         sfRenderWindow_clear(fig->window, fig->ui->background);
         my_plot_point(fig);
         my_plot_axes(fig);

@@ -21,7 +21,7 @@ static double fun(double x) {
 int main(void)
 {
     my_ui_t ui = {.background = sfBlack, .point = sfRed, .point_radius = 10};
-    size_t n = 100;
+    size_t n = 1000;
     double x[n];
     double y[n];
     generateArrays(n, x, y, -499, 500, fun);

@@ -51,10 +51,10 @@ void my_fig_calc_scale(my_fig_t *fig)
                             (min_y != 0 && fig->plot->max_y != 0 ? 0 : 40);
     fig->plot->ratio.x /= this_find_max(fig->plot->xs, fig->plot->num) - min_x;
     fig->plot->ratio.y /= this_find_max(fig->plot->ys, fig->plot->num) - min_y;
-    fig->plot->margin_hor = my_abs(min_x) * fig->plot->ratio.x;
-    fig->plot->axe2 = min_x != 0 ? fig->plot->margin_hor : 40;
+    fig->plot->hor_shift = my_abs(min_x) * fig->plot->ratio.x;
+    fig->plot->axe2 = min_x != 0 ? fig->plot->hor_shift : 40;
     fig->plot->axe2 += fig->ui->point_radius;
-    fig->plot->margin_ver = my_abs(min_y) * fig->plot->ratio.y;
+    fig->plot->ver_shift = my_abs(min_y) * fig->plot->ratio.y;
     fig->plot->axe1 -= min_y != 0 ? (fig->ui->point_radius * 2 +\
-                            fig->plot->margin_ver) : 40;
+                            fig->plot->ver_shift) : 40;
 }

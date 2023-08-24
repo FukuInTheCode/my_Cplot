@@ -16,6 +16,7 @@ typedef struct my_fig {
     sfEvent *event;
     my_ui_t *ui;
     my_plot_t *plot;
+    uint8_t is_moving;
 } my_fig_t;
 
 typedef struct my_ui {
@@ -28,8 +29,8 @@ typedef struct my_plot {
     size_t num;
     double *xs;
     double *ys;
-    double margin_hor;
-    double margin_ver;
+    double hor_shift;
+    double ver_shift;
     sfVector2f ratio;
     double axe1;
     double axe2;
@@ -44,3 +45,4 @@ void my_fig_show(my_fig_t *fig);
 void my_fig_calc_scale(my_fig_t *fig);
 void my_plot_axes(my_fig_t *fig);
 void my_fig_handle_event(my_fig_t *fig);
+void my_plot_handle_mouse(my_fig_t *fig);
