@@ -20,5 +20,5 @@ void my_plot_axes(my_fig_t *fig)
     };
 
     sfRenderWindow_drawPrimitives(fig->window, line2, 2, sfLines, NULL);
-    my_plot_axes_graduation(fig);
+    // my_plot_axes_graduation(fig);
 }

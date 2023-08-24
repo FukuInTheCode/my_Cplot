@@ -15,9 +15,8 @@ static void generateArrays(int n, double x[], double y[], double start,\
 }
 
 static double fun(double x) {
-    return x * x - 25;
+    return x * x * -1;
 }
-
 
 int main(void)
 {
@@ -25,7 +24,7 @@ int main(void)
     size_t n = 100;
     double x[n];
     double y[n];
-    generateArrays(n, x, y, -49, 50, fun);
+    generateArrays(n, x, y, -499, 500, fun);
 
     // for (size_t i = 0; i < n; ++i)
     //     printf("%f, %f\n", x[i], y[i]);
@@ -37,6 +36,10 @@ int main(void)
 
     my_fig_create(&fig1);
     my_fig_show(&fig1);
+    printf("max_x: %lf\n", fig1.plot->max_x);
+    printf("min_y: %lf\n", fig1.plot->min_y);
+    printf("max_y: %lf\n", fig1.plot->max_y);
+    printf("min_x: %lf\n", fig1.plot->min_x);
 
     return 0;
 }
