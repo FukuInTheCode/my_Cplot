@@ -23,21 +23,28 @@ static void my_plot_axes_graduation_horizontal(my_fig_t *fig)
     }
 }
 
-// static void my_plot_axes_graduation_vertical(my_fig_t *fig)
-// {
-//     sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
-//     double steps = fig->plot->max_y / 10;
-//     double i = fig->plot->axe1 + steps;
-//     printf("steps: %lf, i: %lf\n", steps, i);
-//     printf("max y: %lf\n", fig->plot->max_y);
-//     for ( ; i < tmp_vec.x && i != fig->plot->axe1; i += steps) {
-//         sfVertex line[] = {
-//         {{fig->plot->axe2 - 5, i}, sfWhite},
-//         {{fig->plot->axe2 + 5, i}, sfWhite}
-//         };
-//         sfRenderWindow_drawPrimitives(fig->window, line, 2, sfLines, NULL);
-//     }
-// }
+static void my_plot_axes_graduation_vertical(my_fig_t *fig)
+{
+    sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
+    double steps = fig->plot->max_y / 10 * fig->plot->ratio.y;
+    double i = fig->plot->axe1 - steps;
+    for ( ; i > 0 && i != fig->plot->axe1; i -= steps) {
+        sfVertex line[] = {
+        {{fig->plot->axe2 - 5, i}, sfWhite},
+        {{fig->plot->axe2 + 5, i}, sfWhite}
+        };
+        sfRenderWindow_drawPrimitives(fig->window, line, 2, sfLines, NULL);
+    }
+    steps = fig->plot->min_y / 10 * fig->plot->ratio.y;
+    i = fig->plot->axe1 - steps;
+    for ( ; i < tmp_vec.y && i != fig->plot->axe1; i -= steps) {
+        sfVertex line[] = {
+        {{fig->plot->axe2 - 5, i}, sfWhite},
+        {{fig->plot->axe2 + 5, i}, sfWhite}
+        };
+        sfRenderWindow_drawPrimitives(fig->window, line, 2, sfLines, NULL);
+    }
+}
 
 void my_plot_axes(my_fig_t *fig)
 {
@@ -55,5 +62,5 @@ void my_plot_axes(my_fig_t *fig)
 
     sfRenderWindow_drawPrimitives(fig->window, line2, 2, sfLines, NULL);
     my_plot_axes_graduation_horizontal(fig);
-    // my_plot_axes_graduation_vertical(fig);
+    my_plot_axes_graduation_vertical(fig);
 }

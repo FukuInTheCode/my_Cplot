@@ -15,7 +15,7 @@ static void generateArrays(int n, double x[], double y[], double start,\
 }
 
 static double fun(double x) {
-    return x * x * 1;
+    return x * x * x;
 }
 
 int main(void)
