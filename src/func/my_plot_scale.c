@@ -29,7 +29,7 @@ static double this_find_min(double *arr, size_t size)
     return min_value;
 }
 
-static inline void set_extreme_values(my_fig_t *fig)
+void my_fig_set_exvalues(my_fig_t *fig)
 {
     fig->plot->min_x = this_find_min(fig->plot->xs, fig->plot->num);
     fig->plot->max_x = this_find_max(fig->plot->xs, fig->plot->num);
@@ -39,17 +39,14 @@ static inline void set_extreme_values(my_fig_t *fig)
 
 void my_fig_calc_scale(my_fig_t *fig)
 {
-    set_extreme_values(fig);
+    my_fig_set_exvalues(fig);
     sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
     fig->plot->axis.x = tmp_vec.y;
     fig->plot->axis.y = 40;
     double min_x = fig->plot->min_x;
     double min_y = fig->plot->min_y;
-    fig->plot->ratio.x = tmp_vec.x - fig->ui->point_radius * 2 -\
-                            (min_x != 0 && fig->plot->max_x != 0 ? 0 : 40);
     fig->plot->ratio.y = tmp_vec.y - fig->ui->point_radius * 3 -\
                             (min_y != 0 && fig->plot->max_y != 0 ? 0 : 40);
-    fig->plot->ratio.x /= fig->plot->max_x - min_x;
     fig->plot->ratio.y /= fig->plot->max_y - min_y;
     fig->plot->shift.x += my_abs(min_x) * fig->plot->ratio.x;
     fig->plot->axis.y = min_x != 0 || \
