@@ -15,13 +15,13 @@ static void generateArrays(int n, double x[], double y[], double start,\
 }
 
 static double fun(double x) {
-    return x * x * x;
+    return my_randfloat(-10, 10);
 }
 
 int main(void)
 {
     my_ui_t ui = {.background = sfBlack, .point = sfRed, .point_radius = 10};
-    size_t n = 1000;
+    size_t n = 100;
     double x[n];
     double y[n];
     generateArrays(n, x, y, -499, 500, fun);
@@ -36,7 +36,6 @@ int main(void)
 
     my_fig_create(&fig1);
     my_fig_show(&fig1);
-    // my_fig_free(&fig1);
 
     return 0;
 }
