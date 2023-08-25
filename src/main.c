@@ -2,11 +2,10 @@
 
 static void generateArrays(int n, double x[], double y[], double start,\
                                 double end, math_function func) {
-    if (n <= 0 || start >= end) {
+    if (n <= 1 || start >= end) {
         printf("Error: Invalid parameters.\n");
         return;
     }
-
     double increment = (end - start) / (n - 1);
     for (int i = 0; i < n; i++) {
         x[i] = start + i * increment;
@@ -15,7 +14,7 @@ static void generateArrays(int n, double x[], double y[], double start,\
 }
 
 static double fun(double x) {
-    return my_randfloat(-10, 10);
+    return x * x;
 }
 
 int main(void)
@@ -29,7 +28,7 @@ int main(void)
     // for (size_t i = 0; i < n; ++i)
     //     printf("%f, %f\n", x[i], y[i]);
 
-    my_plot_t plot = {.xs = x, .ys = y, .num = n, .type = function_pts};
+    my_plot_t plot = {.xs = x, .ys = y, .num = n, .type = points};
     char *title = "my_plot";
     sfEvent event;
     my_fig_t fig1 = {.title = title, .ui = &ui, .event = &event, .plot = &plot};
