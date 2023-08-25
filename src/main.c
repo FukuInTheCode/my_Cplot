@@ -1,36 +1,41 @@
 #include "../includes/my.h"
 
-static void generateArrays(int n, double x[], double y[], double start,\
-                                double end, math_function func) {
-    if (n <= 1 || start >= end) {
-        printf("Error: Invalid parameters.\n");
-        return;
-    }
-    double increment = (end - start) / (n - 1);
-    for (int i = 0; i < n; i++) {
-        x[i] = start + i * increment;
-        y[i] = func(x[i]);
-    }
-}
-
-double fun(double x) {
-    return x * x;
-}
-
 int main(void)
 {
-    my_ui_t ui = {.background = sfBlack, .point = sfRed, .point_radius = 10};
-    size_t n = 100;
-    double x[n];
-    double y[n];
-    generateArrays(n, x, y, -499, 500, fun);
-
-    my_plot_t plot = {.xs = x, .ys = y, .num = n, .type = function_pts, .func = fun};
-    char *title = "my_plot";
+    hello2();
+    sfVideoMode mode = {1000, 1000, 32};
+    char *title = "Hello World";
+    sfRenderWindow *window = sfRenderWindow_create(mode, title, sfDefaultStyle, NULL);
     sfEvent event;
-    my_fig_t fig1 = {.title = title, .ui = &ui, .event = &event, .plot = &plot};
+    sfVector2f points[] = {
+        {1, 2},
+        {2, 3},
+        {3, 4}
+    };
+    sfVector2u tmp_vec = sfRenderWindow_getSize(window);
+    for (size_t i = 0; i < 3; ++i) {
+        points.x += 
+        printf("%f, %f\n", points[i].x, points[i].y);
+    }
+    while (sfRenderWindow_isOpen(window)) {
+        while (sfRenderWindow_pollEvent(window, &event)) {
+            if (event.type == sfEvtClosed)
+                sfRenderWindow_close(window);
+        }
 
-    my_fig_create(&fig1);
-    my_fig_show(&fig1);
+        sfRenderWindow_clear(window, sfBlack);
+        for (size_t i = 0; i < 3; ++i) {
+            sfCircleShape *current_pts = sfCircleShape_create();
+            sfCircleShape_setFillColor(current_pts, sfBlue);
+            sfCircleShape_setRadius(current_pts, 10);
+            sfCircleShape_setPosition(current_pts, points[i]);
+            sfRenderWindow_drawCircleShape(window, current_pts, NULL);
+            sfCircleShape_destroy(current_pts);
+        }
+        sfRenderWindow_display(window);
+    }
+
+    sfRenderWindow_destroy(window);
+
     return 0;
 }

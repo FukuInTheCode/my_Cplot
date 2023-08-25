@@ -21,7 +21,7 @@ archive: build_obj $(LIB_OBJS)
 
 build:
 	@if not exist "./out" mkdir "./out"
-	@gcc $(CFLAGS) $(SRC) -LC:\Users\ADMIN\Code\my_libs $(LIB) -I./includes -o ./out/$(NAME) $(CSFML)
+	@gcc $(CFLAGS) $(SRC) -LC:\Users\ADMIN\Code\my_libs $(LIB) -I./includes -o ./out/$(NAME) $(CSFML) $(DEPENDENCY)
 
 clean:
 	@if exist ./src/*.o del /Q src\*.o
