@@ -32,7 +32,6 @@ static inline sfBool is_onscreen(my_fig_t *fig, sfVector2f pos)
 
 void my_plot_point(my_fig_t *fig)
 {
-    my_fig_calc_scale(fig);
     for (size_t i = 0; i < fig->plot->num; i++) {
         sfVector2f pos = calc_pos_vec(fig, i);
         if (!is_onscreen(fig, pos)) continue;

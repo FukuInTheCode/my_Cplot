@@ -10,6 +10,13 @@
 typedef struct my_ui my_ui_t;
 typedef struct my_plot my_plot_t;
 
+typedef double (*math_function)(double);
+
+typedef enum {
+    points,
+    function_pts
+} plot_type_t;
+
 typedef struct my_fig {
     sfRenderWindow *window;
     char *title;
@@ -28,6 +35,7 @@ typedef struct my_ui {
 } my_ui_t;
 
 typedef struct my_plot {
+    plot_type_t type;
     size_t num;
     double *xs;
     double *ys;
@@ -38,6 +46,7 @@ typedef struct my_plot {
     double max_x;
     double min_y;
     double max_y;
+    math_function func;
 } my_plot_t;
 
 void my_fig_create(my_fig_t *fig);

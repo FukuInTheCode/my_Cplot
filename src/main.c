@@ -1,7 +1,7 @@
 #include "../includes/my.h"
 
 static void generateArrays(int n, double x[], double y[], double start,\
-                                double end, MathFunction func) {
+                                double end, math_function func) {
     if (n <= 0 || start >= end) {
         printf("Error: Invalid parameters.\n");
         return;
@@ -29,7 +29,7 @@ int main(void)
     // for (size_t i = 0; i < n; ++i)
     //     printf("%f, %f\n", x[i], y[i]);
 
-    my_plot_t plot = {.xs = x, .ys = y, .num = n};
+    my_plot_t plot = {.xs = x, .ys = y, .num = n, .type = function_pts};
     char *title = "my_plot";
     sfEvent event;
     my_fig_t fig1 = {.title = title, .ui = &ui, .event = &event, .plot = &plot};
