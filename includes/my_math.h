@@ -36,3 +36,5 @@ double my_exp(double x, int n);
 double my_ln(double x, int n);
 double my_abs(double x);
 int my_gcd(int a, int b);
+double my_func_max(math_function func, double start, double end);
+double my_func_min(math_function func, double start, double end);
