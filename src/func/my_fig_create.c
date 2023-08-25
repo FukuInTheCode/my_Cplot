@@ -6,4 +6,6 @@ void my_fig_create(my_fig_t *fig)
     fig->window = sfRenderWindow_create(mode, fig->title, \
         sfClose, NULL);
     fig->is_moving = sfFalse;
+    fig->shift_save.x = 0;
+    fig->shift_save.y = 0;
 }

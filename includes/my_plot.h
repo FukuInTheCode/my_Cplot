@@ -18,6 +18,7 @@ typedef struct my_fig {
     my_plot_t *plot;
     uint8_t is_moving;
     sfVector2i mouse_vec_save;
+    sfVector2i shift_save;
 } my_fig_t;
 
 typedef struct my_ui {
