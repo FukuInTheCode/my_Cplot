@@ -1,5 +1,5 @@
 #pragma once
-#define MYPLOTH
+#define MYPLOT_H_
 
 #include "../includes/SFML/Graphics.h"
 #include "../includes/SFML/Window.h"
@@ -17,6 +17,7 @@ typedef struct my_fig {
     my_ui_t *ui;
     my_plot_t *plot;
     uint8_t is_moving;
+    sfVector2i mouse_vec_save;
 } my_fig_t;
 
 typedef struct my_ui {
