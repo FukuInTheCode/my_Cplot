@@ -15,14 +15,6 @@ void generatePoints(sfVector2f points[], int numPoints, double (*func)(double), 
 
 int main(void)
 {
-    my_plot_t plt;
-    sfVideoMode mode = {1000, 1000, 32};
-    char *title = "Hello World";
-    plt.window = sfRenderWindow_create(mode, title, sfDefaultStyle, NULL);
-    sfEvent evt;
-    plt.event = &evt;
-    double r = 10;
-
     double start = -1.0;
     double end = 3.0;
     int numPoints = 20;
@@ -34,6 +26,20 @@ int main(void)
     for (int i = 0; i < numPoints; i++) {
         printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
     }
+
+    my_theme_t th = {
+        10,
+        sfBlack,
+        sfRed,
+        sfWhite
+    };
+
+    my_plot_t plt = {.theme = &th};
+    sfVideoMode mode = {1000, 1000, 32};
+    char *title = "Hello World";
+    sfEvent evt;
+    my_plot_create(&plt, title, &mode, &evt);
+
     sfVector2u tmp_vec = sfRenderWindow_getSize(plt.window);
     sfVector2f max_values = {0, 0};
     sfVector2f min_values = {0, 0};
@@ -49,13 +55,13 @@ int main(void)
         max_values.y - min_values.y,
     };
     sfVector2f ratio = {
-        (tmp_vec.x - r*2) / interval.x,
-        (tmp_vec.y - r*2) / interval.y
+        (tmp_vec.x - plt.theme->radius*2) / interval.x,
+        (tmp_vec.y - plt.theme->radius*2) / interval.y
     };
     for (size_t i = 0; i < ARRAY_LENGTH(points); ++i) {
         points[i].x *= ratio.x;
         points[i].y *= ratio.y;
-        points[i].y = (tmp_vec.y - r*2) - points[i].y;
+        points[i].y = (tmp_vec.y - plt.theme->radius*2) - points[i].y;
         points[i].x += tmp_vec.x / 2.f;
         points[i].y -= tmp_vec.y / 2.f;
     }
@@ -86,11 +92,11 @@ int main(void)
         } else
             is_graph_drag = sfFalse;
 
-        sfRenderWindow_clear(plt.window, sfBlack);
+        sfRenderWindow_clear(plt.window, plt.theme->bg);
         for (size_t i = 0; i < ARRAY_LENGTH(points); ++i) {
             sfCircleShape *current_pts = sfCircleShape_create();
-            sfCircleShape_setFillColor(current_pts, sfBlue);
-            sfCircleShape_setRadius(current_pts, r);
+            sfCircleShape_setFillColor(current_pts, plt.theme->pt);
+            sfCircleShape_setRadius(current_pts, plt.theme->radius);
             sfVector2f tmp_pts = points[i];
             tmp_pts.x += shift.x;
             tmp_pts.y += shift.y;
@@ -99,14 +105,14 @@ int main(void)
             sfCircleShape_destroy(current_pts);
         }
         sfVertex line[] = {
-            {{0, shift.y + tmp_vec.y / 2}, sfWhite},
-            {{tmp_vec.x, shift.y + tmp_vec.y / 2}, sfWhite}
+            {{0, shift.y + tmp_vec.y / 2}, plt.theme->axis},
+            {{tmp_vec.x, shift.y + tmp_vec.y / 2}, plt.theme->axis}
         };
 
         sfRenderWindow_drawPrimitives(plt.window, line, 2, sfLines, NULL);
         sfVertex line2[] = {
-            {{tmp_vec.x / 2 + shift.x, 0}, sfWhite},
-            {{tmp_vec.x / 2 + shift.x, tmp_vec.y}, sfWhite}
+            {{tmp_vec.x / 2 + shift.x, 0}, plt.theme->axis},
+            {{tmp_vec.x / 2 + shift.x, tmp_vec.y}, plt.theme->axis}
         };
 
         sfRenderWindow_drawPrimitives(plt.window, line2, 2, sfLines, NULL);
