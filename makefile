@@ -1,18 +1,18 @@
-NAME = my_plot
+NAME       = my_plot
 
-CFLAGS = -W -Wall -Wextra
+CFLAGS     = -W -Wall -Wextra
 
-LIB = -l$(NAME)
+LIB        = -l$(NAME)
 
-SRC = $(wildcard ./src/*.c)
-
-LIB_SRC = $(wildcard ./src/func/*.c)
-
-CSFML	= -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
+CSFML	   = -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
 
 DEPENDENCY = -lmy_math
 
-LIB_OBJS = $(wildcard ./src/func/*.o)
+SRC        = $(wildcard ./src/*.c)
+
+LIB_SRC    = $(wildcard ./src/func/*.c)
+
+LIB_OBJS    = $(wildcard ./src/func/*.o)
 
 all: archive build clean
 
