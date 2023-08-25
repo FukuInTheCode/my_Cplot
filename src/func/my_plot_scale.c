@@ -41,7 +41,7 @@ void my_fig_calc_scale(my_fig_t *fig)
 {
     set_extreme_values(fig);
     sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
-    fig->plot->axe1 = tmp_vec.y;
+    fig->plot->axis.x = tmp_vec.y;
     fig->plot->axe2 = 40;
     double min_x = fig->plot->min_x;
     double min_y = fig->plot->min_y;
@@ -55,6 +55,6 @@ void my_fig_calc_scale(my_fig_t *fig)
     fig->plot->axe2 = min_x != 0 ? fig->plot->hor_shift : 40;
     fig->plot->axe2 += fig->ui->point_radius;
     fig->plot->ver_shift += my_abs(min_y) * fig->plot->ratio.y;
-    fig->plot->axe1 -= min_y != 0 ? (fig->ui->point_radius * 2 +\
+    fig->plot->axis.x -= min_y != 0 ? (fig->ui->point_radius * 2 +\
                             fig->plot->ver_shift) : 40;
 }

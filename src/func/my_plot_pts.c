@@ -13,7 +13,7 @@ static inline sfVector2f calc_pos_vec(my_fig_t *fig, size_t i)
 
     if (fig->plot->axe2 == 40 + fig->ui->point_radius) pos.x += 40;
 
-    if (fig->plot->axe1 == tmp_vec.y - 40)
+    if (fig->plot->axis.x == tmp_vec.y - 40)
         pos.y -= 40 - fig->ui->point_radius * 2;
 
     return pos;

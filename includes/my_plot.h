@@ -34,8 +34,8 @@ typedef struct my_plot {
     double hor_shift;
     double ver_shift;
     sfVector2f ratio;
-    double axe1;
     double axe2;
+    sfVector2f axis;
     double min_x;
     double max_x;
     double min_y;
