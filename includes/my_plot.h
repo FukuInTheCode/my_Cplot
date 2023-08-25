@@ -1,5 +1,5 @@
 #pragma once
-#define MYPLOT_H_
+#define MY_PLOT_H
 
 #include "../includes/SFML/Graphics.h"
 #include "../includes/SFML/Window.h"

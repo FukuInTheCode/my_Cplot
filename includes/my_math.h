@@ -1,5 +1,5 @@
 #pragma once
-#define MYMATH_H_
+#define MY_MATH_H
 
 #include <math.h>
 

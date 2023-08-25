@@ -1,5 +1,5 @@
 #pragma once
-#define MY_H_
+#define MY_H
 
 #include <stdio.h>
 #include <time.h>
