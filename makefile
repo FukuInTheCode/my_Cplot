@@ -2,14 +2,15 @@ NAME = my_plot
 
 CFLAGS = -W -Wall -Wextra
 
-LIBS = -l$(NAME)
+LIB = -l$(NAME)
 
 SRC = $(wildcard ./src/*.c)
 
-LIB_SRC = $(wildcard ./src/func/*.c) \
-				$(wildcard ./src/libs/*.c)
+LIB_SRC = $(wildcard ./src/func/*.c)
 
 CSFML	= -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
+
+DEPENDENCY = -lmy_math
 
 LIB_OBJS = $(wildcard ./src/func/*.o)
 
@@ -20,7 +21,7 @@ archive: build_obj $(LIB_OBJS)
 
 build:
 	@if not exist "./out" mkdir "./out"
-	@gcc $(CFLAGS) $(SRC) -LC:\Users\ADMIN\Code\my_libs $(LIBS) -I./includes -o ./out/$(NAME) $(CSFML)
+	@gcc $(CFLAGS) $(SRC) -LC:\Users\ADMIN\Code\my_libs $(LIB) -I./includes -o ./out/$(NAME) $(CSFML)
 
 clean:
 	@if exist ./src/*.o del /Q src\*.o
@@ -29,5 +30,5 @@ clean:
 	@if exist ./*.o del /Q *.o
 
 build_obj:
-	@gcc $(CFLAGS) $(CSFML) -c -I./includes $(LIB_SRC)
+	@gcc $(CFLAGS) $(CSFML) $(DEPENDENCY) -c -LC:\Users\ADMIN\Code\my_libs -I./includes $(LIB_SRC)
 	@move *.o ./src/func
