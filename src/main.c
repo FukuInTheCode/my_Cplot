@@ -1,5 +1,18 @@
 #include "../includes/my.h"
 
+double exampleFunction(double x) {
+    return x;
+}
+
+void generatePoints(sfVector2f points[], int numPoints, double (*func)(double), double start, double end) {
+    double step = (end - start) / (numPoints - 1);
+    for (int i = 0; i < numPoints; i++) {
+        double x = start + i * step;
+        points[i].x = x;
+        points[i].y = func(x);
+    }
+}
+
 int main(void)
 {
     hello2();
@@ -8,13 +21,18 @@ int main(void)
     sfRenderWindow *window = sfRenderWindow_create(mode, title, sfDefaultStyle, NULL);
     sfEvent event;
     double r = 10;
-    sfVector2f points[] = {
-        {0, 0},
-        {1, 2},
-        {2, 3},
-        {3, 4},
-        {-1, 2}
-    };
+
+    double start = -1.0;
+    double end = 3.0;
+    int numPoints = 20;
+
+    sfVector2f points[numPoints];
+
+    generatePoints(points, numPoints, exampleFunction, start, end);
+
+    for (int i = 0; i < numPoints; i++) {
+        printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
+    }
     sfVector2u tmp_vec = sfRenderWindow_getSize(window);
     sfVector2f max_values = {0, 0};
     sfVector2f min_values = {0, 0};
@@ -86,6 +104,18 @@ int main(void)
             sfRenderWindow_drawCircleShape(window, current_pts, NULL);
             sfCircleShape_destroy(current_pts);
         }
+        sfVertex line[] = {
+            {{0, shift.y + tmp_vec.y / 2}, sfWhite},
+            {{tmp_vec.x, shift.y + tmp_vec.y / 2}, sfWhite}
+        };
+
+        sfRenderWindow_drawPrimitives(window, line, 2, sfLines, NULL);
+        sfVertex line2[] = {
+            {{tmp_vec.x / 2 + shift.x, 0}, sfWhite},
+            {{tmp_vec.x / 2 + shift.x, tmp_vec.y}, sfWhite}
+        };
+
+        sfRenderWindow_drawPrimitives(window, line2, 2, sfLines, NULL);
         sfRenderWindow_display(window);
     }
 
