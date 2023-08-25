@@ -8,7 +8,7 @@ void my_plot(my_fig_t *fig)
         if (fig->plot->type == points)
             my_plot_point(fig);
         else if (fig->plot->type == function_pts)
-            printf("TODO\n");
+            my_plot_function(fig);
         my_plot_axes(fig);
         sfRenderWindow_display(fig->window);
 }

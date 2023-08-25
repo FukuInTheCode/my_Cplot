@@ -13,7 +13,7 @@ static void generateArrays(int n, double x[], double y[], double start,\
     }
 }
 
-static double fun(double x) {
+double fun(double x) {
     return x * x;
 }
 
@@ -23,12 +23,9 @@ int main(void)
     size_t n = 100;
     double x[n];
     double y[n];
-    generateArrays(n, x, y, -499, 500, fun);
+    // generateArrays(n, x, y, -499, 500, fun);
 
-    // for (size_t i = 0; i < n; ++i)
-    //     printf("%f, %f\n", x[i], y[i]);
-
-    my_plot_t plot = {.xs = x, .ys = y, .num = n, .type = points};
+    my_plot_t plot = {.xs = x, .ys = y, .num = n, .type = function_pts, .func = fun};
     char *title = "my_plot";
     sfEvent event;
     my_fig_t fig1 = {.title = title, .ui = &ui, .event = &event, .plot = &plot};

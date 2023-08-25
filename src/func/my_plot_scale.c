@@ -57,4 +57,5 @@ void my_fig_calc_scale(my_fig_t *fig)
     fig->plot->axis.y += fig->ui->point_radius;
     fig->plot->shift.y += my_abs(min_y) * fig->plot->ratio.y;
     fig->plot->axis.x -= min_y != 0 || fig->plot->shift.y != 0 ? \
+                    (fig->ui->point_radius * 2 +fig->plot->shift.y) : 40;
 }
