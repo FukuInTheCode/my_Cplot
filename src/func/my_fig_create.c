@@ -10,8 +10,12 @@ static void create_window(my_fig_t *fig)
 static void init_variable(my_fig_t *fig)
 {
     fig->is_moving = sfFalse;
+
     fig->shift_save.x = 0;
     fig->shift_save.y = 0;
+
+    fig->plot->shift.x = 0;
+    fig->plot->shift.y = 0;
 }
 
 void my_fig_create(my_fig_t *fig)

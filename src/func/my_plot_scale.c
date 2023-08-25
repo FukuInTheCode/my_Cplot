@@ -49,12 +49,12 @@ void my_fig_calc_scale(my_fig_t *fig)
                             (min_x != 0 && fig->plot->max_x != 0 ? 0 : 40);
     fig->plot->ratio.y = tmp_vec.y - fig->ui->point_radius * 3 -\
                             (min_y != 0 && fig->plot->max_y != 0 ? 0 : 40);
-    fig->plot->ratio.x /= this_find_max(fig->plot->xs, fig->plot->num) - min_x;
-    fig->plot->ratio.y /= this_find_max(fig->plot->ys, fig->plot->num) - min_y;
-    fig->plot->hor_shift += my_abs(min_x) * fig->plot->ratio.x;
-    fig->plot->axis.y = min_x != 0 ? fig->plot->hor_shift : 40;
+    fig->plot->ratio.x /= fig->plot->max_x - min_x;
+    fig->plot->ratio.y /= fig->plot->max_y - min_y;
+    fig->plot->shift.x += my_abs(min_x) * fig->plot->ratio.x;
+    fig->plot->axis.y = min_x != 0 ? fig->plot->shift.x : 40;
     fig->plot->axis.y += fig->ui->point_radius;
-    fig->plot->ver_shift += my_abs(min_y) * fig->plot->ratio.y;
+    fig->plot->shift.y += my_abs(min_y) * fig->plot->ratio.y;
     fig->plot->axis.x -= min_y != 0 ? (fig->ui->point_radius * 2 +\
-                            fig->plot->ver_shift) : 40;
+                            fig->plot->shift.y) : 40;
 }

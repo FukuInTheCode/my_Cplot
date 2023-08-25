@@ -6,9 +6,9 @@ static inline sfVector2f calc_pos_vec(my_fig_t *fig, size_t i)
 
     sfVector2f pos = {
         .x = fig->plot->xs[i] * fig->plot->ratio.x +\
-                fig->plot->hor_shift,
+                fig->plot->shift.x,
         .y = tmp_vec.y - fig->plot->ys[i] * fig->plot->ratio.y -\
-                fig->ui->point_radius * 3 - fig->plot->ver_shift
+                fig->ui->point_radius * 3 - fig->plot->shift.y
     };
 
     if (fig->plot->axis.y == 40 + fig->ui->point_radius) pos.x += 40;

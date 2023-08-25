@@ -46,21 +46,33 @@ static void my_plot_axes_graduation_vertical(my_fig_t *fig)
     }
 }
 
-void my_plot_axes(my_fig_t *fig)
+static inline void draw_axis(my_fig_t *fig)
 {
     sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
-    sfVertex line[] = {
-        {{0, fig->plot->axis.x}, sfWhite},
-        {{tmp_vec.x, fig->plot->axis.x}, sfWhite}
-    };
-
-    sfRenderWindow_drawPrimitives(fig->window, line, 2, sfLines, NULL);
+    if (0 < fig->plot->axis.x && fig->plot->axis.x < tmp_vec.x) {
+        sfVertex line[] = {
+            {{0, fig->plot->axis.x}, sfWhite},
+            {{tmp_vec.x, fig->plot->axis.x}, sfWhite}
+        };
+        sfRenderWindow_drawPrimitives(fig->window, line, 2, sfLines, NULL);
+    }
+    if (fig->plot->axis.y > tmp_vec.y || fig->plot->axis.y < 0)
+        return;
+    
     sfVertex line2[] = {
         {{fig->plot->axis.y, 0}, sfWhite},
         {{fig->plot->axis.y, tmp_vec.y}, sfWhite}
     };
-
     sfRenderWindow_drawPrimitives(fig->window, line2, 2, sfLines, NULL);
-    my_plot_axes_graduation_horizontal(fig);
-    my_plot_axes_graduation_vertical(fig);
+}
+
+void my_plot_axes(my_fig_t *fig)
+{
+    draw_axis(fig);
+    sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
+    if (0 < fig->plot->axis.x && fig->plot->axis.x < tmp_vec.x)
+        my_plot_axes_graduation_horizontal(fig);
+
+    if (0 < fig->plot->axis.x && fig->plot->axis.x < tmp_vec.y)
+        my_plot_axes_graduation_vertical(fig);
 }

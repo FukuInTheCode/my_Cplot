@@ -31,8 +31,7 @@ typedef struct my_plot {
     size_t num;
     double *xs;
     double *ys;
-    double hor_shift;
-    double ver_shift;
+    sfVector2f shift;
     sfVector2f ratio;
     sfVector2f axis;
     double min_x;
