@@ -47,6 +47,7 @@ void my_fig_show(my_fig_t *fig);
 void my_fig_calc_scale(my_fig_t *fig);
 void my_fig_handle_event(my_fig_t *fig);
 
+void my_plot(my_fig_t *fig);
 void my_plot_axes(my_fig_t *fig);
 void my_plot_handle_mouse(my_fig_t *fig);
 void my_plot_point(my_fig_t *fig);

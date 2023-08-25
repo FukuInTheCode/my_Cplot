@@ -12,7 +12,9 @@
         "color.h": "c",
         "export.h": "c",
         "vector2.h": "c",
-        "my_plot.h": "c"
+        "my_plot.h": "c",
+        "stdlib.h": "c",
+        "stdint.h": "c"
     },
     "epilinter.tokenizer_address": "ws://54.36.183.139:8081"
 }
