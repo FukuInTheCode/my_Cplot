@@ -10,14 +10,6 @@
 typedef struct my_ui my_ui_t;
 typedef struct my_plot my_plot_t;
 
-typedef double (*math_function)(double);
-
-typedef enum {
-    inf,
-    minus_inf,
-    integer
-} math_func_limit;
-
 typedef enum {
     points,
     function_pts

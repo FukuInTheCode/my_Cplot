@@ -44,10 +44,6 @@ void my_fig_calc_scale(my_fig_t *fig)
     fig->plot->axis.x = tmp_vec.y;
     fig->plot->axis.y = 40;
     double min_x = fig->plot->min_x;
-    double min_y = fig->plot->min_y;
-    fig->plot->ratio.y = tmp_vec.y - fig->ui->point_radius * 3 -\
-                            (min_y != 0 && fig->plot->max_y != 0 ? 0 : 40);
-    fig->plot->ratio.y /= fig->plot->max_y - min_y;
     fig->plot->shift.x += my_abs(min_x) * fig->plot->ratio.x;
     fig->plot->axis.y = min_x != 0 || \
             fig->plot->shift.x != 0 ? fig->plot->shift.x : 40;

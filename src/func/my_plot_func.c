@@ -16,8 +16,7 @@ static void generate_points(my_fig_t *fig, double start, double end)
 
 void my_plot_function(my_fig_t *fig)
 {
-    generate_points(fig, -10, 10);
-    // for (size_t i = 0; i < fig->plot->num; ++i)
-    //     printf("%f, %f\n", fig->plot->xs[i], fig->plot->ys[i]);
-    my_plot_point(fig);
+    sfVector2u tmp_vec = sfRenderWindow_getSize(fig->window);
+    printf("%lf, %lf\n", fig->plot->ratio.x, (tmp_vec.x - fig->ui->point_radius * 2) / (fig->plot->max_x - fig->plot->min_x));
+    generate_points(fig, -fig->plot->shift.x / fig->plot->ratio.x - 10, -fig->plot->shift.x / fig->plot->ratio.x + 10);
 }

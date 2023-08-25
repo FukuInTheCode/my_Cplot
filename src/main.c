@@ -14,7 +14,7 @@ static void generateArrays(int n, double x[], double y[], double start,\
 }
 
 double fun(double x) {
-    return x;
+    return x * x;
 }
 
 int main(void)
@@ -25,13 +25,12 @@ int main(void)
     double y[n];
     generateArrays(n, x, y, -499, 500, fun);
 
-    my_plot_t plot = {.xs = x, .ys = y, .num = n, .type = points, .func = fun};
+    my_plot_t plot = {.xs = x, .ys = y, .num = n, .type = function_pts, .func = fun};
     char *title = "my_plot";
     sfEvent event;
     my_fig_t fig1 = {.title = title, .ui = &ui, .event = &event, .plot = &plot};
 
     my_fig_create(&fig1);
     my_fig_show(&fig1);
-
     return 0;
 }
