@@ -4,9 +4,9 @@ double exampleFunction(double x) {
     return x;
 }
 
-void generatePoints(sfVector2f points[], int numPoints, double (*func)(double), double start, double end) {
-    double step = (end - start) / (numPoints - 1);
-    for (int i = 0; i < numPoints; i++) {
+void generatePoints(sfVector2f points[], int num, double (*func)(double), double start, double end) {
+    double step = (end - start) / (num - 1);
+    for (int i = 0; i < num; i++) {
         double x = start + i * step;
         points[i].x = x;
         points[i].y = func(x);
@@ -17,15 +17,21 @@ int main(void)
 {
     double start = -1.0;
     double end = 3.0;
-    int numPoints = 20;
+    int num = 20;
 
-    sfVector2f points[numPoints];
+    sfVector2f points[num];
 
-    generatePoints(points, numPoints, exampleFunction, start, end);
+    generatePoints(points, num, exampleFunction, start, end);
 
-    for (int i = 0; i < numPoints; i++) {
+    for (int i = 0; i < num; i++) {
         printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
     }
+
+    my_graph_t g = {
+        .points = points,
+        .data_num = num
+    };
+
 
     my_theme_t th = {
         10,
@@ -34,43 +40,46 @@ int main(void)
         sfWhite
     };
 
-    my_plot_t plt = {.theme = &th};
+    my_plot_t plt = {.theme = &th, .graph = &g};
     sfVideoMode mode = {1000, 1000, 32};
     char *title = "Hello World";
     sfEvent evt;
     my_plot_create(&plt, title, &mode, &evt);
 
-    sfVector2u tmp_vec = sfRenderWindow_getSize(plt.window);
-    sfVector2f max_values = {0, 0};
-    sfVector2f min_values = {0, 0};
-    for (size_t i = 0; i < ARRAY_LENGTH(points); ++i) {
-        if (points[i].x > max_values.x) max_values.x = points[i].x;
-        if (points[i].y > max_values.y) max_values.y = points[i].y;
-        if (points[i].x < min_values.x) min_values.x = points[i].x;
-        if (points[i].y < min_values.y) min_values.y = points[i].y;
+    for (int i = 0; i < plt.graph->data_num; i++) {
+        printf("{%.2f, %.2f},\n", plt.graph->points[i].x, plt.graph->points[i].y);
     }
+#if 0
+    // sfVector2u tmp_vec = sfRenderWindow_getSize(plt.window);
 
-    sfVector2f interval = {
-        max_values.x - min_values.x,
-        max_values.y - min_values.y,
-    };
-    sfVector2f ratio = {
-        (tmp_vec.x - plt.theme->radius*2) / interval.x,
-        (tmp_vec.y - plt.theme->radius*2) / interval.y
-    };
-    for (size_t i = 0; i < ARRAY_LENGTH(points); ++i) {
-        points[i].x *= ratio.x;
-        points[i].y *= ratio.y;
-        points[i].y = (tmp_vec.y - plt.theme->radius*2) - points[i].y;
-        points[i].x += tmp_vec.x / 2.f;
-        points[i].y -= tmp_vec.y / 2.f;
-    }
+    // for (size_t i = 0; i < ARRAY_LENGTH(points); ++i) {
+    //     if (points[i].x > max_values.x) max_values.x = points[i].x;
+    //     if (points[i].y > max_values.y) max_values.y = points[i].y;
+    //     if (points[i].x < min_values.x) min_values.x = points[i].x;
+    //     if (points[i].y < min_values.y) min_values.y = points[i].y;
+    // }
 
-    sfBool is_graph_drag = sfFalse;
+    // sfVector2f interval = {
+    //     max_values.x - min_values.x,
+    //     max_values.y - min_values.y,
+    // };
+    // sfVector2f ratio = {
+    //     (tmp_vec.x - plt.theme->radius*2) / interval.x,
+    //     (tmp_vec.y - plt.theme->radius*2) / interval.y
+    // };
+    // for (size_t i = 0; i < ARRAY_LENGTH(points); ++i) {
+    //     points[i].x *= ratio.x;
+    //     points[i].y *= ratio.y;
+    //     points[i].y = (tmp_vec.y - plt.theme->radius*2) - points[i].y;
+    //     points[i].x += tmp_vec.x / 2.f;
+    //     points[i].y -= tmp_vec.y / 2.f;
+    // }
 
-    sfVector2i shift = {0, 0};
+    // sfBool is_graph_drag = sfFalse;
 
-    sfVector2i last_shift = {0, 0};
+    // sfVector2i shift = {0, 0};
+
+    // sfVector2i last_shift = {0, 0};
 
     while (sfRenderWindow_isOpen(plt.window)) {
         while (sfRenderWindow_pollEvent(plt.window, plt.event)) {
@@ -121,5 +130,6 @@ int main(void)
 
     sfRenderWindow_destroy(plt.window);
 
+#endif
     return 0;
 }
