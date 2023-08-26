@@ -50,62 +50,9 @@ int main(void)
         printf("{%.2f, %.2f},\n", plt.graph->points[i].x, plt.graph->points[i].y);
     }
 
-    // my_plot_handle_mouse(&plt);
-
-    printf("\n");
-
     my_plot_show(&plt);
-
-    // while (sfRenderWindow_isOpen(plt.window)) {
-    //     while (sfRenderWindow_pollEvent(plt.window, plt.event)) {
-    //         if (plt.event->type == sfEvtClosed)
-    //             sfRenderWindow_close(plt.window);
-    //     }
-
-    //     if (sfMouse_isButtonPressed(sfMouseLeft)) {
-    //         if (!is_graph_drag) {
-    //             is_graph_drag = sfTrue;
-    //             last_shift = sfMouse_getPosition(plt.window);
-    //         }
-    //         else {
-    //             sfVector2i mouse_vec = sfMouse_getPosition(plt.window);
-    //             shift.x += mouse_vec.x - last_shift.x;
-    //             shift.y += mouse_vec.y - last_shift.y;
-    //             last_shift = mouse_vec;
-    //         }
-    //     } else
-    //         is_graph_drag = sfFalse;
-
-    //     sfRenderWindow_clear(plt.window, plt.theme->bg);
-    //     for (size_t i = 0; i < ARRAY_LENGTH(points); ++i) {
-    //         sfCircleShape *current_pts = sfCircleShape_create();
-    //         sfCircleShape_setFillColor(current_pts, plt.theme->pt);
-    //         sfCircleShape_setRadius(current_pts, plt.theme->radius);
-    //         sfVector2f tmp_pts = points[i];
-    //         tmp_pts.x += shift.x;
-    //         tmp_pts.y += shift.y;
-    //         sfCircleShape_setPosition(current_pts, tmp_pts);
-    //         sfRenderWindow_drawCircleShape(plt.window, current_pts, NULL);
-    //         sfCircleShape_destroy(current_pts);
-    //     }
-    //     sfVertex line[] = {
-    //         {{0, shift.y + tmp_vec.y / 2}, plt.theme->axis},
-    //         {{tmp_vec.x, shift.y + tmp_vec.y / 2}, plt.theme->axis}
-    //     };
-
-    //     sfRenderWindow_drawPrimitives(plt.window, line, 2, sfLines, NULL);
-    //     sfVertex line2[] = {
-    //         {{tmp_vec.x / 2 + shift.x, 0}, plt.theme->axis},
-    //         {{tmp_vec.x / 2 + shift.x, tmp_vec.y}, plt.theme->axis}
-    //     };
-
-    //     sfRenderWindow_drawPrimitives(plt.window, line2, 2, sfLines, NULL);
-    //     sfRenderWindow_display(plt.window);
-    // }
 
     sfRenderWindow_destroy(plt.window);
 
-#if 0
-#endif
     return 0;
 }

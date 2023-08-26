@@ -5,6 +5,11 @@
 #include "../includes/SFML/Window.h"
 #include "my_math.h"
 
+typedef enum {
+    pts,
+    axis
+} my_obj_type_t;
+
 typedef struct {
     size_t data_num;
 
@@ -18,6 +23,7 @@ typedef struct {
     sfVector2f *points;
 
     sfBool is_dragged;
+
 } my_graph_t;
 
 typedef struct {
@@ -40,3 +46,5 @@ void my_plot_handle_event(my_plot_t *plt);
 void my_plot_handle_mouse(my_plot_t *plt);
 void my_plot_points(my_plot_t *plt);
 void my_plot_axis(my_plot_t *plt);
+sfBool my_plot_is_onscreen(my_plot_t *plt, sfVector2f coords,\
+                            my_obj_type_t type);
