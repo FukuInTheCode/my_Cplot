@@ -7,8 +7,7 @@ static inline __attribute__((always_inline)) void mouse_handler(my_plot_t *plt)
         if (!plt->graph->is_dragged) {
             plt->graph->is_dragged = sfTrue;
             plt->graph->last_shift = mouse_vec;
-        }
-        else {
+        } else {
             plt->graph->shift.x += mouse_vec.x - plt->graph->last_shift.x;
             plt->graph->shift.y += mouse_vec.y - plt->graph->last_shift.y;
             plt->graph->last_shift = mouse_vec;

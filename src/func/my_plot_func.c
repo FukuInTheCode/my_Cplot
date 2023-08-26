@@ -1,8 +1,7 @@
 #include "../../includes/my.h"
 
 static inline __attribute__((always_inline))\
-     sfBool is_define(my_func_t *f, double x)
-{
+    sfBool is_define(my_func_t *f, double x) {
     if (f->left_type == integer && x < f->left)
         return sfFalse;
     if (f->right_type == integer && x > f->right)
