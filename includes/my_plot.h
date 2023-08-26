@@ -11,7 +11,6 @@ typedef struct {
     sfVector2f max_values;
     sfVector2f min_values;
 
-    sfVector2f interval;
     sfVector2f ratio;
     sfVector2f shift;
     sfVector2i last_shift;

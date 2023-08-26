@@ -15,9 +15,9 @@ void generatePoints(sfVector2f points[], int num, double (*func)(double), double
 
 int main(void)
 {
-    double start = -1.0;
-    double end = 3.0;
-    int num = 20;
+    double start = -10;
+    double end = 10;
+    int num = 21;
 
     sfVector2f points[num];
 

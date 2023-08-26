@@ -40,11 +40,8 @@ static inline __attribute__((always_inline)) void init_var(my_plot_t *plt)
     sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
     find_extrema(plt);
 
-    plt->graph->interval.y = plt->graph->max_values.y - plt->graph->min_values.y;
-    plt->graph->interval.x = plt->graph->max_values.x - plt->graph->min_values.x;
-
-    plt->graph->ratio.x = (tmp_vec.x - plt->theme->radius*2) / plt->graph->interval.x;
-    plt->graph->ratio.y = (tmp_vec.y - plt->theme->radius*2) / plt->graph->interval.y;
+    plt->graph->ratio.x = (tmp_vec.x - plt->theme->radius*2) / 20;
+    plt->graph->ratio.y = (tmp_vec.y - plt->theme->radius*2) / 20;
 
     plt->graph->is_dragged = sfFalse;
     plt->graph->shift.x = 0;
