@@ -25,6 +25,7 @@ void my_plot_show(my_plot_t *plt)
 
         sfRenderWindow_clear(plt->window, plt->theme->bg);
         my_plot_axis(plt);
+        my_plot_func(plt);
         my_plot_points(plt);
         sfRenderWindow_display(plt->window);
     }

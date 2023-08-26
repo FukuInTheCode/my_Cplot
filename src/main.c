@@ -17,7 +17,7 @@ int main(void)
 {
     double start = -10;
     double end = 10;
-    int num = 21;
+    size_t num = 21;
 
     sfVector2f points[num];
 
@@ -27,9 +27,16 @@ int main(void)
         printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
     }
 
+    my_func_t f = {
+        .f = exampleFunction
+    };
+
     my_graph_t g = {
         .points = points,
-        .data_num = num
+        .data_num = num,
+        .st_func.max_pts = 21,
+        .st_func.func = f,
+        .type = static_func
     };
 
 

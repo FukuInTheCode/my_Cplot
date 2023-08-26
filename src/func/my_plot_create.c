@@ -1,18 +1,5 @@
 #include "../../includes/my.h"
 
-static inline __attribute__((always_inline)) void compute_pts(my_plot_t *plt)
-{
-    sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
-    for (size_t i = 0; i < plt->graph->data_num; ++i) {
-        plt->graph->points[i].y *= plt->graph->ratio.y;
-        plt->graph->points[i].x *= plt->graph->ratio.x;
-        plt->graph->points[i].y = (tmp_vec.y - plt->theme->radius*2) -\
-                                    plt->graph->points[i].y;
-        plt->graph->points[i].x += tmp_vec.x / 2.f;
-        plt->graph->points[i].y -= tmp_vec.y / 2.f;
-    }
-}
-
 static inline __attribute__((always_inline)) void find_extrema(my_plot_t *plt)
 {
     plt->graph->max_values.x = 0;
