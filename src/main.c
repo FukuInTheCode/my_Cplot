@@ -1,7 +1,7 @@
 #include "../includes/my.h"
 
 double exampleFunction(double x) {
-    return x;
+    return 1 / (x - 1);
 }
 
 void generatePoints(sfVector2f points[], int num, double (*func)(double), double start, double end) {
@@ -17,7 +17,7 @@ int main(void)
 {
     double start = -10;
     double end = 10;
-    size_t num = 21;
+    size_t num = 1000;
 
     sfVector2f points[num];
 
@@ -27,8 +27,14 @@ int main(void)
     //     printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
     // }
 
+    double undef[] = { 1 };
+
     my_func_t f = {
-        .f = exampleFunction
+        .f = exampleFunction,
+        .left_type = inf,
+        .right_type = inf,
+        .n_undef = 1,
+        .undefined = undef
     };
 
     my_graph_t g = {
@@ -53,9 +59,9 @@ int main(void)
     sfEvent evt;
     my_plot_create(&plt, title, &mode, &evt);
 
-    for (int i = 0; i < plt.graph->data_num; i++) {
-        printf("{%.2f, %.2f},\n", plt.graph->points[i].x, plt.graph->points[i].y);
-    }
+    // for (int i = 0; i < plt.graph->data_num; i++) {
+    //     printf("{%.2f, %.2f},\n", plt.graph->points[i].x, plt.graph->points[i].y);
+    // }
 
     my_plot_show(&plt);
 

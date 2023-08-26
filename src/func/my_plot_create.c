@@ -6,7 +6,6 @@ static inline __attribute__((always_inline)) void find_extrema(my_plot_t *plt)
     plt->graph->max_values.y = 0;
     plt->graph->min_values.x = 0;
     plt->graph->min_values.y = 0;
-    printf("%lld\n", plt->graph->data_num);
     for (size_t i = 0; i < plt->graph->data_num; ++i) {
         if (plt->graph->points[i].x > plt->graph->max_values.x)
             plt->graph->max_values.x = plt->graph->points[i].x;
