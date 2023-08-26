@@ -6,7 +6,9 @@ void my_plot_show(my_plot_t *plt)
 
         my_plot_handle_event(plt);
 
-        sfRenderWindow_clear(plt.window, plt.theme->bg);
+        my_plot_handle_mouse(plt);
+
+        sfRenderWindow_clear(plt->window, plt->theme->bg);
         for (size_t i = 0; i < ARRAY_LENGTH(points); ++i) {
             sfCircleShape *current_pts = sfCircleShape_create();
             sfCircleShape_setFillColor(current_pts, plt.theme->pt);
