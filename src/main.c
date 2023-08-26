@@ -21,11 +21,11 @@ int main(void)
 
     sfVector2f points[num];
 
-    generatePoints(points, num, exampleFunction, start, end);
+    // generatePoints(points, num, exampleFunction, start, end);
 
-    for (int i = 0; i < num; i++) {
-        printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
-    }
+    // for (int i = 0; i < num; i++) {
+    //     printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
+    // }
 
     my_func_t f = {
         .f = exampleFunction
@@ -34,7 +34,7 @@ int main(void)
     my_graph_t g = {
         .points = points,
         .data_num = num,
-        .st_func.max_pts = 21,
+        .st_func.max_pts = num,
         .st_func.func = f,
         .type = static_func
     };
