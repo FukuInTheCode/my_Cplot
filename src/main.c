@@ -50,6 +50,12 @@ int main(void)
         printf("{%.2f, %.2f},\n", plt.graph->points[i].x, plt.graph->points[i].y);
     }
 
+    // my_plot_handle_mouse(&plt);
+
+    printf("\n");
+
+    my_plot_show(&plt);
+
     // while (sfRenderWindow_isOpen(plt.window)) {
     //     while (sfRenderWindow_pollEvent(plt.window, plt.event)) {
     //         if (plt.event->type == sfEvtClosed)

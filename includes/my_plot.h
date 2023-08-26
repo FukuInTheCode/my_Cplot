@@ -14,7 +14,7 @@ typedef struct {
     sfVector2f interval;
     sfVector2f ratio;
     sfVector2f shift;
-    sfVector2f last_shift;
+    sfVector2i last_shift;
 
     sfVector2f *points;
 
@@ -39,3 +39,5 @@ void my_plot_create(my_plot_t *plt, char *title, sfVideoMode *md, sfEvent *evt);
 void my_plot_show(my_plot_t *plt);
 void my_plot_handle_event(my_plot_t *plt);
 void my_plot_handle_mouse(my_plot_t *plt);
+void my_plot_points(my_plot_t *plt);
+void my_plot_axis(my_plot_t *plt);

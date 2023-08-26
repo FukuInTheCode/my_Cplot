@@ -12,6 +12,7 @@ static inline __attribute__((always_inline)) void compute_pts(my_plot_t *plt)
         plt->graph->points[i].y -= tmp_vec.y / 2.f;
     }
 }
+
 static inline __attribute__((always_inline)) void find_extrema(my_plot_t *plt)
 {
     plt->graph->max_values.x = 0;
