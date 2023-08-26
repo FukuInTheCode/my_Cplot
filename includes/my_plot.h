@@ -10,8 +10,15 @@ typedef enum {
     axis
 } my_obj_type_t;
 
+typedef enum {
+    static_pts;
+    dynamic_pts;
+    static_func;
+    dynamic_func;
+} my_graph_type_t;
+
 typedef struct {
-    size_t data_num;
+    my_graph_type_t type;
 
     sfVector2f max_values;
     sfVector2f min_values;
@@ -19,7 +26,17 @@ typedef struct {
     sfVector2f ratio;
     sfVector2f shift;
     sfVector2i last_shift;
+    union {
+        struct {
+            size_t data_num;
+        } st_pts;
 
+        struct {
+            size_t max_pts;
+            my_func_t func;
+        } st_func;
+
+    }
     sfVector2f *points;
 
     sfBool is_dragged;

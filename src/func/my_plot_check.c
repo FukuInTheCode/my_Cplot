@@ -14,6 +14,6 @@ sfBool my_plot_is_onscreen(my_plot_t *plt, sfVector2f coords,\
     if (coords.y < upper_border.y) return sfFalse;
     if (coords.y > lower_border.y) return sfFalse;
     if (coords.x > lower_border.x) return sfFalse;
-    
+
     return sfTrue;
 }
