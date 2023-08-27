@@ -39,12 +39,12 @@ typedef struct {
         my_func_t func;
     } st_func;
     sfVector2f *points;
+    sfVector2f *computed_pts;
 
     sfBool is_dragged;
 
     my_theme_t *theme;
 } my_graph_t;
-
 
 typedef struct {
     sfRenderWindow *window;
@@ -53,25 +53,35 @@ typedef struct {
     my_graph_t **graph;
 } my_plot_t;
 
-// static inline __attribute__((always_inline)) void compute_pts(my_plot_t *plt,\
-//                                     my_graph_t *g, sfVector2f **pts)
-// {
-//     sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
-//     for (size_t i = 0; i < plt->graph->data_num; ++i) {
-//         plt->graph->points[i].x *= plt->graph->ratio.x;
-//         plt->graph->points[i].y *= plt->graph->ratio.y;
-//         plt->graph->points[i].y = (tmp_vec.y - plt->graph->theme->radius*2) -\
-//                                     plt->graph->points[i].y;
-//         plt->graph->points[i].x += tmp_vec.x / 2.f;
-//         plt->graph->points[i].y -= tmp_vec.y / 2.f;
-//     }
-// }
+static inline __attribute__((always_inline)) void copy_vec(sfVector2f *to,\
+                                                    sfVector2f *from, uint32_t n)
+{
+    for (uint32_t i = 0; i < n; ++i) {
+        to[i].x = from[i].x;
+        to[i].y = from[i].y;
+    }
+}
+
+static inline __attribute__((always_inline)) void compute_pts(my_plot_t *plt,\
+                                                                my_graph_t *g)
+{
+    sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
+    copy_vec(g->computed_pts, g->points, g->data_num);
+    for (size_t i = 0; i < g->data_num; ++i) {
+        g->computed_pts[i].x *= g->ratio.x;
+        g->computed_pts[i].y *= g->ratio.y;
+        g->computed_pts[i].y = (tmp_vec.y - g->theme->radius*2) -\
+                                    g->computed_pts[i].y;
+        g->computed_pts[i].x += tmp_vec.x / 2.f;
+        g->computed_pts[i].y -= tmp_vec.y / 2.f;
+    }
+}
 
 void my_plot_create(my_plot_t *plt, char *title, sfVideoMode *md, sfEvent *evt);
 void my_plot_show(my_plot_t *plt);
 void my_plot_handle_event(my_plot_t *plt);
 void my_plot_handle_mouse(my_plot_t *plt);
-void my_plot_points(my_plot_t *plt);
+void my_plot_computed_pts(my_plot_t *plt);
 void my_plot_axis(my_plot_t *plt);
 sfBool my_plot_is_onscreen(my_plot_t *plt, sfVector2f coords,\
                             my_obj_type_t type);

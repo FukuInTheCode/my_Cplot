@@ -20,12 +20,14 @@ int main(void)
     size_t num = 21;
 
     sfVector2f points[num];
+    sfVector2f c_pts[num];
 
     generatePoints(points, num, exampleFunction, start, end);
 
-    for (int i = 0; i < num; i++) {
-        printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
-    }
+    // for (int i = 0; i < num; i++) {
+    //     printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
+    // }
+
 
     printf("--------------\n");
 
@@ -48,6 +50,7 @@ int main(void)
 
     my_graph_t g = {
         .points = points,
+        .computed_pts = c_pts,
         .data_num = num,
         // .st_func.max_pts = num,
         // .st_func.func = f,
@@ -64,17 +67,6 @@ int main(void)
     char *title = "Hello World";
     sfEvent evt;
     my_plot_create(&plt, title, &mode, &evt);
-
-    plt.graph[0]->points[0].x = 100;
-
-    printf("%f\n", plt.graph[0]->max_values.x);
-    for (int i = 0; i < num; i++) {
-        printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
-    }
-
-    // for (int i = 0; i < plt.graph->data_num; i++) {
-    //     printf("{%.2f, %.2f},\n", plt.graph->points[i].x, plt.graph->points[i].y);
-    // }
 
     // my_plot_show(&plt);
 

@@ -43,5 +43,6 @@ void my_plot_create(my_plot_t *plt, char *title, sfVideoMode *md, sfEvent *evt)
 
     for (uint32_t i = 0; i < plt->graph_n; ++i) {
         init_var(plt, plt->graph[i]);
+        compute_pts(plt, plt->graph[i]);
     }
 }
