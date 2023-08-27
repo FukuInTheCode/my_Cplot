@@ -23,7 +23,7 @@ int main(void)
     size_t num = 41;
     double start2 = -10;
     double end2 = 10;
-    size_t num2 = 10;
+    size_t num2 = 1100;
 
     sfVector2f points[num];
     sfVector2f c_pts[num];

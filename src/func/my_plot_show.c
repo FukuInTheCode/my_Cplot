@@ -1,5 +1,14 @@
 #include "../../includes/my.h"
 
+static inline __attribute__((always_inline)) void type_handler(my_plot_t *plt,\
+                                                                my_graph_t *g)
+{
+    if (g->type == func)
+        my_plot_func(plt, g);
+    else if (g->type == dynamic_pts)
+        calc_ratio(plt, g);
+}
+
 static inline __attribute__((always_inline)) void mouse_handler(my_plot_t *plt)
 {
     if (sfMouse_isButtonPressed(sfMouseLeft)) {
@@ -25,10 +34,7 @@ void my_plot_show(my_plot_t *plt)
         sfRenderWindow_clear(plt->window, plt->theme->plot.bg);
         my_plot_axis(plt);
         for (uint32_t i = 0; i < plt->graph_n; ++i) {
-            if (plt->graph[i]->type == func)
-                my_plot_func(plt, plt->graph[i]);
-            else if (plt->graph[i]->type == dynamic_pts)
-                calc_ratio(plt, plt->graph[i]);
+            type_handler(plt, plt->graph[i]);
             my_plot_points(plt, plt->graph[i]);
         }
         sfRenderWindow_display(plt->window);
