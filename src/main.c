@@ -63,6 +63,7 @@ int main(void)
         .points = points,
         .computed_pts = c_pts,
         .data_num = num,
+        .max_pts = num,
         .type = dynamic_pts,
         .theme = &th_g1
     };

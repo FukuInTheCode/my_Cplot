@@ -3,7 +3,10 @@
 void my_plot_points(my_plot_t *plt, my_graph_t *g)
 {
     compute_pts(plt, g);
-    for (size_t i = 0; i < g->data_num; ++i) {
+    size_t num = g->data_num;
+    if (g->type == dynamic_pts && num > g->max_pts)
+        num = g->max_pts;
+    for (size_t i = 0; i < num; ++i) {
         sfVector2f tmp_pts = g->computed_pts[i];
         tmp_pts.x += plt->shift.x - g->theme->graph.radius;
         tmp_pts.y += plt->shift.y + g->theme->graph.radius;
