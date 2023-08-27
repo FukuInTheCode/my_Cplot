@@ -71,7 +71,7 @@ int main(void)
         .points = points2,
         .computed_pts = c_pts2,
         .data_num = num2,
-        .type = static_func,
+        .type = func,
         .st_func = {
             .func = f,
             .max_pts = num2

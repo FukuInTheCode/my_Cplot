@@ -20,8 +20,7 @@ typedef enum {
 typedef enum {
     static_pts,
     dynamic_pts,
-    static_func,
-    dynamic_func
+    func
 } my_graph_type_t;
 
 typedef struct {
@@ -44,7 +43,6 @@ typedef struct {
     sfVector2f max_values;
     sfVector2f min_values;
 
-    sfVector2f ratio;
     size_t data_num;
     struct {
         size_t max_pts;
@@ -61,6 +59,7 @@ typedef struct {
     sfEvent *event;
 
     sfBool is_dragged;
+    sfVector2f ratio;
     sfVector2f shift;
     sfVector2i last_shift;
 
@@ -85,8 +84,8 @@ static inline __attribute__((always_inline)) void compute_pts(my_plot_t *plt,\
     sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
     copy_vec(g->computed_pts, g->points, g->data_num);
     for (size_t i = 0; i < g->data_num; ++i) {
-        g->computed_pts[i].x *= g->ratio.x;
-        g->computed_pts[i].y *= g->ratio.y;
+        g->computed_pts[i].x *= plt->ratio.x;
+        g->computed_pts[i].y *= plt->ratio.y;
         g->computed_pts[i].y = (tmp_vec.y - g->theme->graph.radius*2) -\
                                     g->computed_pts[i].y;
         g->computed_pts[i].x += tmp_vec.x / 2.f;

@@ -18,7 +18,7 @@ void my_plot_func(my_plot_t *plt, my_graph_t *g)
 {
     double steps = 20.0 / g->st_func.max_pts;
     for (size_t i = 0; i < g->st_func.max_pts; ++i) {
-        double x = -10 - plt->shift.x / g->ratio.x + i * steps;
+        double x = -10 - plt->shift.x / plt->ratio.x + i * steps;
         g->points[i].x = x;
         if (!is_define(&(g->st_func.func), x))
             g->points[i].y = sfRenderWindow_getSize(plt->window).y;

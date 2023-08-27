@@ -25,7 +25,7 @@ void my_plot_show(my_plot_t *plt)
         sfRenderWindow_clear(plt->window, plt->theme->plot.bg);
         my_plot_axis(plt);
         for (uint32_t i = 0; i < plt->graph_n; ++i) {
-            if (plt->graph[i]->type == static_func)
+            if (plt->graph[i]->type == func)
                 my_plot_func(plt, plt->graph[i]);
             my_plot_points(plt, plt->graph[i]);
         }
