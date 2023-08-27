@@ -51,8 +51,8 @@ typedef struct {
         my_func_t func;
     } st_func;
     sfVector2f *points;
-
     sfVector2f *computed_pts;
+
     my_theme_t *theme;
 } my_graph_t;
 

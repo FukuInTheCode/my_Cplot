@@ -23,7 +23,7 @@ int main(void)
     size_t num = 21;
     double start2 = -10;
     double end2 = 10;
-    size_t num2 = 100;
+    size_t num2 = 10;
 
     sfVector2f points[num];
     sfVector2f c_pts[num];
@@ -33,13 +33,13 @@ int main(void)
     generatePoints(points, num, exampleFunction, start, end);
     generatePoints(points2, num2, exampleFunction2, start2, end2);
 
-    double undef[] = { 1 };
+    double undef[] = {};
 
     my_func_t f = {
-        .f = exampleFunction,
+        .f = exampleFunction2,
         .left_type = inf,
         .right_type = inf,
-        .n_undef = 1,
+        .n_undef = 0,
         .undefined = undef
     };
 
