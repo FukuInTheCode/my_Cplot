@@ -21,21 +21,17 @@ int main(void)
     double start = -10;
     double end = 10;
     size_t num = 21;
+    double start2 = -10;
+    double end2 = 10;
+    size_t num2 = 100;
 
     sfVector2f points[num];
     sfVector2f c_pts[num];
-    sfVector2f points2[num];
-    sfVector2f c_pts2[num];
+    sfVector2f points2[num2];
+    sfVector2f c_pts2[num2];
 
     generatePoints(points, num, exampleFunction, start, end);
-    generatePoints(points2, num, exampleFunction2, start, end);
-
-    // for (int i = 0; i < num; i++) {
-    //     printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
-    // }
-
-
-    printf("--------------\n");
+    generatePoints(points2, num2, exampleFunction2, start2, end2);
 
     // double undef[] = { 1 };
 
@@ -59,7 +55,7 @@ int main(void)
     };
     my_theme_t th_g2 = {
         .type = graph_th,
-        .graph.radius = 10,
+        .graph.radius = 5,
         .graph.pt = sfYellow
     };
 
@@ -74,7 +70,7 @@ int main(void)
     my_graph_t g2 = {
         .points = points2,
         .computed_pts = c_pts2,
-        .data_num = num,
+        .data_num = num2,
         .type = static_pts,
         .theme = &th_g2
     };
