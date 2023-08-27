@@ -26,20 +26,20 @@ static inline __attribute__((always_inline)) void init_var(my_plot_t *plt, my_gr
     sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
     find_extrema(plt, g);
 
-    g->ratio.x = (tmp_vec.x - g->theme->radius*2) / 20;
-    g->ratio.y = (tmp_vec.y - g->theme->radius*2) / 20;
-
-    g->is_dragged = sfFalse;
-    g->shift.x = 0;
-    g->shift.y = 0;
-    g->last_shift.x = 0;
-    g->last_shift.y = 0;
+    g->ratio.x = (tmp_vec.x - g->theme->graph.radius*2) / 20;
+    g->ratio.y = (tmp_vec.y - g->theme->graph.radius*2) / 20;
 }
 
 void my_plot_create(my_plot_t *plt, char *title, sfVideoMode *md, sfEvent *evt)
 {
     plt->window = sfRenderWindow_create(*md, title, sfDefaultStyle, NULL);
     plt->event = evt;
+
+    plt->is_dragged = sfFalse;
+    plt->shift.x = 0;
+    plt->shift.y = 0;
+    plt->last_shift.x = 0;
+    plt->last_shift.y = 0;
 
     for (uint32_t i = 0; i < plt->graph_n; ++i) {
         init_var(plt, plt->graph[i]);
