@@ -25,5 +25,4 @@ void my_plot_func(my_plot_t *plt, my_graph_t *g)
         else
             g->points[i].y = g->st_func.func.f(x);
     }
-    compute_pts(plt, g);
 }

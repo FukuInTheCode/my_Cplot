@@ -2,6 +2,7 @@
 
 void my_plot_points(my_plot_t *plt, my_graph_t *g)
 {
+    compute_pts(plt, g);
     for (size_t i = 0; i < g->data_num; ++i) {
         sfVector2f tmp_pts = g->computed_pts[i];
         tmp_pts.x += plt->shift.x - g->theme->graph.radius;
