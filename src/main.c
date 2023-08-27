@@ -33,15 +33,15 @@ int main(void)
     generatePoints(points, num, exampleFunction, start, end);
     generatePoints(points2, num2, exampleFunction2, start2, end2);
 
-    // double undef[] = { 1 };
+    double undef[] = { 1 };
 
-    // my_func_t f = {
-    //     .f = exampleFunction,
-    //     .left_type = inf,
-    //     .right_type = inf,
-    //     .n_undef = 1,
-    //     .undefined = undef
-    // };
+    my_func_t f = {
+        .f = exampleFunction,
+        .left_type = inf,
+        .right_type = inf,
+        .n_undef = 1,
+        .undefined = undef
+    };
 
     my_theme_t th_plt = {
         .type = plot_th,
@@ -71,7 +71,11 @@ int main(void)
         .points = points2,
         .computed_pts = c_pts2,
         .data_num = num2,
-        .type = static_pts,
+        .type = static_func,
+        .st_func = {
+            .func = f,
+            .max_pts = num2
+        },
         .theme = &th_g2
     };
 
@@ -89,6 +93,7 @@ int main(void)
     sfVideoMode mode = {500 * SCALE, 500 * SCALE, 32};
     char *title = "Hello World";
     sfEvent evt;
+
     my_plot_create(&plt, title, &mode, &evt);
 
     my_plot_show(&plt);
