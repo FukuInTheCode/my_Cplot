@@ -18,9 +18,9 @@ void generatePoints(sfVector2f points[], int num, double (*func)(double), double
 
 int main(void)
 {
-    double start = -10;
-    double end = 10;
-    size_t num = 21;
+    double start = -20;
+    double end = 20;
+    size_t num = 41;
     double start2 = -10;
     double end2 = 10;
     size_t num2 = 10;
@@ -63,7 +63,7 @@ int main(void)
         .points = points,
         .computed_pts = c_pts,
         .data_num = num,
-        .type = static_pts,
+        .type = dynamic_pts,
         .theme = &th_g1
     };
 

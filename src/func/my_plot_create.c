@@ -25,10 +25,19 @@ static inline __attribute__((always_inline)) void init_var(my_plot_t *plt, my_gr
 {
     sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
     find_extrema(plt, g);
-    if ((tmp_vec.x - g->theme->graph.radius * 2) / 20 > plt->ratio.x)
-        plt->ratio.x = (tmp_vec.x - g->theme->graph.radius * 2) / 20;
-    if ((tmp_vec.y - g->theme->graph.radius * 2) / 20 > plt->ratio.y)
-        plt->ratio.y = (tmp_vec.y - g->theme->graph.radius * 2) / 20;
+
+    double x_range = 20;
+    double y_range = 20;
+
+    if (g->type == dynamic_pts) {
+        x_range = g->max_values.x - g->min_values.x;
+        y_range = g->max_values.y - g->min_values.y;
+    }
+
+    if ((tmp_vec.x - g->theme->graph.radius * 2) / x_range < plt->ratio.x)
+        plt->ratio.x = (tmp_vec.x - g->theme->graph.radius * 2) / x_range;
+    if ((tmp_vec.y - g->theme->graph.radius * 2) / y_range < plt->ratio.y)
+        plt->ratio.y = (tmp_vec.y - g->theme->graph.radius * 2) / y_range;
 }
 
 void my_plot_create(my_plot_t *plt, char *title, sfVideoMode *md, sfEvent *evt)
@@ -41,8 +50,10 @@ void my_plot_create(my_plot_t *plt, char *title, sfVideoMode *md, sfEvent *evt)
     plt->shift.y = 0;
     plt->last_shift.x = 0;
     plt->last_shift.y = 0;
-    plt->ratio.x = 0;
-    plt->ratio.y = 0;
+
+    sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
+    plt->ratio.x = tmp_vec.x / 20;
+    plt->ratio.y = tmp_vec.y / 20;
 
     for (uint32_t i = 0; i < plt->graph_n; ++i) {
         init_var(plt, plt->graph[i]);
