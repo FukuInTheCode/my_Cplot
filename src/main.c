@@ -85,7 +85,8 @@ int main(void)
         .graph_n = 2,
         .theme = &th_plt
     };
-    sfVideoMode mode = {1000, 1000, 32};
+
+    sfVideoMode mode = {500 * SCALE, 500 * SCALE, 32};
     char *title = "Hello World";
     sfEvent evt;
     my_plot_create(&plt, title, &mode, &evt);

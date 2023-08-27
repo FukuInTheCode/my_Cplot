@@ -5,6 +5,8 @@
 #include "../includes/SFML/Window.h"
 #include "my_math.h"
 
+#define SCLALE 2
+
 typedef enum {
     plot_th,
     graph_th
