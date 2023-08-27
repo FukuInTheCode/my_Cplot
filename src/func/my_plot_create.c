@@ -1,45 +1,47 @@
 #include "../../includes/my.h"
 
-static inline __attribute__((always_inline)) void find_extrema(my_plot_t *plt)
+static inline __attribute__((always_inline)) void find_extrema(my_plot_t *plt, my_graph_t *g)
 {
-    plt->graph->max_values.x = 0;
-    plt->graph->max_values.y = 0;
-    plt->graph->min_values.x = 0;
-    plt->graph->min_values.y = 0;
-    for (size_t i = 0; i < plt->graph->data_num; ++i) {
-        if (plt->graph->points[i].x > plt->graph->max_values.x)
-            plt->graph->max_values.x = plt->graph->points[i].x;
+    g->max_values.x = 0;
+    g->max_values.y = 0;
+    g->min_values.x = 0;
+    g->min_values.y = 0;
+    for (size_t i = 0; i < g->data_num; ++i) {
+        if (g->points[i].x > g->max_values.x)
+            g->max_values.x = g->points[i].x;
 
-        if (plt->graph->points[i].y > plt->graph->max_values.y)
-            plt->graph->max_values.y = plt->graph->points[i].y;
+        if (g->points[i].y > g->max_values.y)
+            g->max_values.y = g->points[i].y;
 
-        if (plt->graph->points[i].x < plt->graph->min_values.x)
-            plt->graph->min_values.x = plt->graph->points[i].x;
+        if (g->points[i].x < g->min_values.x)
+            g->min_values.x = g->points[i].x;
 
-        if (plt->graph->points[i].y < plt->graph->min_values.y)
-            plt->graph->min_values.y = plt->graph->points[i].y;
+        if (g->points[i].y < g->min_values.y)
+            g->min_values.y = g->points[i].y;
     }
 }
 
-static inline __attribute__((always_inline)) void init_var(my_plot_t *plt)
+static inline __attribute__((always_inline)) void init_var(my_plot_t *plt, my_graph_t *g)
 {
     sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
-    find_extrema(plt);
+    find_extrema(plt, g);
 
-    plt->graph->ratio.x = (tmp_vec.x - plt->theme->radius*2) / 20;
-    plt->graph->ratio.y = (tmp_vec.y - plt->theme->radius*2) / 20;
+    g->ratio.x = (tmp_vec.x - g->theme->radius*2) / 20;
+    g->ratio.y = (tmp_vec.y - g->theme->radius*2) / 20;
 
-    plt->graph->is_dragged = sfFalse;
-    plt->graph->shift.x = 0;
-    plt->graph->shift.y = 0;
-    plt->graph->last_shift.x = 0;
-    plt->graph->last_shift.y = 0;
+    g->is_dragged = sfFalse;
+    g->shift.x = 0;
+    g->shift.y = 0;
+    g->last_shift.x = 0;
+    g->last_shift.y = 0;
 }
 
 void my_plot_create(my_plot_t *plt, char *title, sfVideoMode *md, sfEvent *evt)
 {
     plt->window = sfRenderWindow_create(*md, title, sfDefaultStyle, NULL);
     plt->event = evt;
-    init_var(plt);
-    compute_pts(plt);
+
+    for (uint32_t i = 0; i < plt->graph_n; ++i) {
+        init_var(plt, plt->graph[i]);
+    }
 }

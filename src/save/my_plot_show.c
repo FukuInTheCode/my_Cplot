@@ -22,7 +22,7 @@ void my_plot_show(my_plot_t *plt)
         my_plot_handle_event(plt);
         mouse_handler(plt);
 
-        sfRenderWindow_clear(plt->window, plt->theme->bg);
+        sfRenderWindow_clear(plt->window, plt->graph->theme->bg);
         my_plot_axis(plt);
         if (plt->graph->type == static_func)
             my_plot_func(plt);
