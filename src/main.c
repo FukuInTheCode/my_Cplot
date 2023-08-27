@@ -28,7 +28,7 @@ int main(void)
     sfVector2f c_pts2[num];
 
     generatePoints(points, num, exampleFunction, start, end);
-    generatePoints(points2, num, exampleFunction, start, end);
+    generatePoints(points2, num, exampleFunction2, start, end);
 
     // for (int i = 0; i < num; i++) {
     //     printf("{%.2f, %.2f},\n", points[i].x, points[i].y);
@@ -71,9 +71,9 @@ int main(void)
         .theme = &th_g1
     };
 
-    my_graph_t g = {
-        .points = points,
-        .computed_pts = c_pts,
+    my_graph_t g2 = {
+        .points = points2,
+        .computed_pts = c_pts2,
         .data_num = num,
         .type = static_pts,
         .theme = &th_g2
@@ -86,7 +86,7 @@ int main(void)
 
     my_plot_t plt = {
         .graph = g_arr,
-        .graph_n = 1,
+        .graph_n = 2,
         .theme = &th_plt
     };
     sfVideoMode mode = {1000, 1000, 32};
@@ -96,7 +96,7 @@ int main(void)
 
     my_plot_show(&plt);
 
-    // sfRenderWindow_destroy(plt.window);
+    sfRenderWindow_destroy(plt.window);
 
     return 0;
 }
