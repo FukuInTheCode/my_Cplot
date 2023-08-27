@@ -18,6 +18,13 @@ typedef enum {
 } my_graph_type_t;
 
 typedef struct {
+    double radius;
+    sfColor bg;
+    sfColor pt;
+    sfColor axis;
+} my_theme_t;
+
+typedef struct {
     my_graph_type_t type;
 
     sfVector2f max_values;
@@ -35,34 +42,30 @@ typedef struct {
 
     sfBool is_dragged;
 
+    my_theme_t *theme;
 } my_graph_t;
 
-typedef struct {
-    double radius;
-    sfColor bg;
-    sfColor pt;
-    sfColor axis;
-} my_theme_t;
 
 typedef struct {
     sfRenderWindow *window;
     sfEvent *event;
-    my_theme_t *theme;
-    my_graph_t *graph;
+    uint32_t graph_n;
+    my_graph_t **graph;
 } my_plot_t;
 
-static inline __attribute__((always_inline)) void compute_pts(my_plot_t *plt)
-{
-    sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
-    for (size_t i = 0; i < plt->graph->data_num; ++i) {
-        plt->graph->points[i].y *= plt->graph->ratio.y;
-        plt->graph->points[i].x *= plt->graph->ratio.x;
-        plt->graph->points[i].y = (tmp_vec.y - plt->theme->radius*2) -\
-                                    plt->graph->points[i].y;
-        plt->graph->points[i].x += tmp_vec.x / 2.f;
-        plt->graph->points[i].y -= tmp_vec.y / 2.f;
-    }
-}
+// static inline __attribute__((always_inline)) void compute_pts(my_plot_t *plt,\
+//                                     my_graph_t *g, sfVector2f **pts)
+// {
+//     sfVector2u tmp_vec = sfRenderWindow_getSize(plt->window);
+//     for (size_t i = 0; i < plt->graph->data_num; ++i) {
+//         plt->graph->points[i].x *= plt->graph->ratio.x;
+//         plt->graph->points[i].y *= plt->graph->ratio.y;
+//         plt->graph->points[i].y = (tmp_vec.y - plt->graph->theme->radius*2) -\
+//                                     plt->graph->points[i].y;
+//         plt->graph->points[i].x += tmp_vec.x / 2.f;
+//         plt->graph->points[i].y -= tmp_vec.y / 2.f;
+//     }
+// }
 
 void my_plot_create(my_plot_t *plt, char *title, sfVideoMode *md, sfEvent *evt);
 void my_plot_show(my_plot_t *plt);
