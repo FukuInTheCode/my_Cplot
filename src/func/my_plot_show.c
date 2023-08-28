@@ -6,7 +6,7 @@ static inline __attribute__((always_inline)) void type_handler(my_plot_t *plt,\
     if (g->type == func)
         my_plot_func(plt, g);
     else if (g->type == dynamic_pts)
-        calc_ratio(plt, g);
+        calc_ratio(plt, g, 2);
 }
 
 static inline __attribute__((always_inline)) void mouse_handler(my_plot_t *plt)
@@ -37,6 +37,7 @@ void my_plot_show(my_plot_t *plt)
             type_handler(plt, plt->graph[i]);
             my_plot_points(plt, plt->graph[i]);
         }
+        // printf("ratio: %f, %f\n", plt->ratio.x, plt->ratio.y);
         sfRenderWindow_display(plt->window);
     }
 }
