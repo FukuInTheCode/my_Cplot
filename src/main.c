@@ -1,10 +1,10 @@
 #include "../includes/my.h"
 
 double exampleFunction(double x) {
-    return x;
+    return sin(x);
 }
 double exampleFunction2(double x) {
-    return x * x;
+    return cos(x);
 }
 
 void generatePoints(sfVector2f points[], int num, double (*func)(double), double start, double end) {
@@ -20,7 +20,7 @@ int main(void)
 {
     double start = -20;
     double end = 20;
-    size_t num = 41;
+    size_t num = 1000;
     double start2 = -10;
     double end2 = 10;
     size_t num2 = 1100;
@@ -33,7 +33,7 @@ int main(void)
     generatePoints(points, num, exampleFunction, start, end);
     generatePoints(points2, num2, exampleFunction2, start2, end2);
 
-    double undef[] = {};
+    double undef[] = { 0 };
 
     my_func_t f = {
         .f = exampleFunction2,
@@ -41,6 +41,15 @@ int main(void)
         .right_type = inf,
         .n_undef = 0,
         .undefined = undef
+    };
+    double undef2[] = { 0 };
+
+    my_func_t f2 = {
+        .f = exampleFunction,
+        .left_type = inf,
+        .right_type = inf,
+        .n_undef = 0,
+        .undefined = undef2
     };
 
     my_theme_t th_plt = {
@@ -63,8 +72,11 @@ int main(void)
         .points = points,
         .computed_pts = c_pts,
         .data_num = num,
-        .max_pts = num,
-        .type = static_pts,
+        .type = func,
+        .st_func = {
+            .func = f2,
+            .max_pts = num
+        },
         .theme = &th_g1
     };
 
