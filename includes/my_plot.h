@@ -73,6 +73,20 @@ typedef struct {
     my_theme_t *theme;
 } my_plot_t;
 
+void my_plot_create(my_plot_t *plt, char *title, sfVideoMode *md, sfEvent *evt);
+void my_plot_show(my_plot_t *plt);
+void my_plot_handle_event(my_plot_t *plt);
+void my_plot_handle_mouse(my_plot_t *plt);
+void my_plot_points(my_plot_t *plt, my_graph_t *g);
+void my_plot_axis(my_plot_t *plt);
+sfBool my_plot_is_onscreen(my_plot_t *plt, sfVector2f coords,\
+                            my_obj_type_t type, my_graph_t *g);
+void my_plot_func(my_plot_t *plt, my_graph_t *g);
+
+
+#pragma once
+#define utils
+
 static inline __attribute__((always_inline)) void copy_vec(sfVector2f *to,\
                                                     sfVector2f *from, uint32_t n)
 {
@@ -136,13 +150,3 @@ static inline __attribute__((always_inline)) void calc_ratio(my_plot_t *plt, my_
     if ((tmp_vec.y - g->theme->graph.radius * 2) / y_range < plt->ratio.y)
         plt->ratio.y = (tmp_vec.y - g->theme->graph.radius * 2) / y_range;
 }
-
-void my_plot_create(my_plot_t *plt, char *title, sfVideoMode *md, sfEvent *evt);
-void my_plot_show(my_plot_t *plt);
-void my_plot_handle_event(my_plot_t *plt);
-void my_plot_handle_mouse(my_plot_t *plt);
-void my_plot_points(my_plot_t *plt, my_graph_t *g);
-void my_plot_axis(my_plot_t *plt);
-sfBool my_plot_is_onscreen(my_plot_t *plt, sfVector2f coords,\
-                            my_obj_type_t type, my_graph_t *g);
-void my_plot_func(my_plot_t *plt, my_graph_t *g);
