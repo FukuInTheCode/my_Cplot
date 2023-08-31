@@ -11,8 +11,7 @@ static inline __attribute__((always_inline)) void type_handler(my_plot_t *plt,\
 
 static inline __attribute__((always_inline)) void mouse_handler(my_plot_t *plt)
 {
-    printf("%d\n", sfKeyboard_isKeyPressed(sfKeyM));
-    if (sfMouse_isButtonPressed(sfMouseLeft) || sfMouse_isButtonPressed(sfMouseRight) || sfKeyboard_isKeyPressed(sfKeyM)) {
+    if (sfMouse_isButtonPressed(sfMouseLeft)) {
         sfVector2i mouse_vec = sfMouse_getPosition(plt->window);
         if (!plt->is_dragged) {
             plt->is_dragged = sfTrue;
