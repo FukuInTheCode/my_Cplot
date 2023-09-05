@@ -32,6 +32,9 @@ static void hor_shift(my_plot_t *plt)
 
 void my_plot_handle_shift(my_plot_t *plt)
 {
+    vertical_shift(plt);
+    hor_shift(plt);
+
     if (sfKeyboard_isKeyPressed(sfKeyO)) {
         plt->shift.x = 0;
         plt->shift.y = 0;
