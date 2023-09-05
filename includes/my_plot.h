@@ -26,6 +26,7 @@ typedef struct {
     double *ys;
     uint32_t pts_n;
     uint32_t max_pts_n;
+    double(*func)(double) f;
     my_theme_t *th;
 } my_graph_t;
 
