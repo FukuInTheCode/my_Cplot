@@ -29,6 +29,9 @@ typedef struct {
     char *title;
     my_theme_t *th;
     my_graph_t **gs;
+    sfVector2f ratio;
+    sfVector2f shift;
+    sfVector2f zoom;
 } my_plot_t;
 
 #endif
