@@ -41,7 +41,7 @@ void my_plot_create(my_plot_t *plt, my_theme_t *th);
 void my_plot_show(my_plot_t *plt);
 void my_plot_handle_events(my_plot_t *plt);
 void my_plot_handle_mouse(my_plot_t *plt);
-void my_plot_handle_zoom(my_plt_t *plt);
+void my_plot_handle_zoom(my_plot_t *plt);
 void my_plot_handle_shift(my_plot_t *plt);
 
 #endif

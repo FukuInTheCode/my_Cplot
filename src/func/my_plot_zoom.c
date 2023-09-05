@@ -1,6 +1,6 @@
 #include "../../includes/my.h"
 
-void my_plot_handle_zoom(my_plt_t *plt)
+void my_plot_handle_zoom(my_plot_t *plt)
 {
     if (sfKeyboard_isKeyPressed(sfKeyA)) {
         plt->zoom.x += 1;

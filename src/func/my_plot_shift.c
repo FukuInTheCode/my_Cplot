@@ -1,6 +1,6 @@
 #include "../../includes/my.h"
 
-static void vertical_shift(my_plt_t *plt)
+static void vertical_shift(my_plot_t *plt)
 {
     if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
         if (sfKeyboard_isKeyPressed(sfKeyLControl))
