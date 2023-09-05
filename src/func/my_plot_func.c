@@ -15,3 +15,8 @@ void my_plot_func(my_plot_t *plt, my_graph_t *g)
         (g->pts_n)++;
     }
 }
+
+void my_plot_func2(my_plot_t *plt, my_graph_t *g)
+{
+    // ...
+}
