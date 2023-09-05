@@ -50,10 +50,11 @@ int main(void)
     my_plot_t plt = {
         .title = "test",
         .event = &event,
-        .th = &plt_th,
         .gs_n = 2,
         .gs = gs
     };
+
+    my_plot_create(&plt, &plt_th);
 
     // calc ratio
     sfVector2u window_size = sfRenderWindow_getSize(plt.window);
