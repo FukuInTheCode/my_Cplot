@@ -123,13 +123,13 @@ typedef struct
 /// Use sfMouseWheelScrollEvent instead.
 ///
 ////////////////////////////////////////////////////////////
-typedef struct CSFML_DEPRECATED
-{
-    sfEventType type;
-    int         delta;
-    int         x;
-    int         y;
-} sfMouseWheelEvent;
+// typedef struct CSFML_DEPRECATED
+// {
+//     sfEventType type;
+//     int         delta;
+//     int         x;
+//     int         y;
+// } sfMouseWheelEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief Mouse wheel events parameters
@@ -225,7 +225,7 @@ typedef union
     sfTextEvent             text;             ///< Text event parameters
     sfMouseMoveEvent        mouseMove;        ///< Mouse move event parameters
     sfMouseButtonEvent      mouseButton;      ///< Mouse button event parameters
-    sfMouseWheelEvent       mouseWheel;       ///< Mouse wheel event parameters (deprecated)
+    // sfMouseWheelEvent       mouseWheel;       ///< Mouse wheel event parameters (deprecated)
     sfMouseWheelScrollEvent mouseWheelScroll; ///< Mouse wheel event parameters
     sfJoystickMoveEvent     joystickMove;     ///< Joystick move event parameters
     sfJoystickButtonEvent   joystickButton;   ///< Joystick button event parameters
