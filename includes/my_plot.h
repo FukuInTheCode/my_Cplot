@@ -25,7 +25,7 @@ typedef struct {
 
 typedef struct {
     sfRenderWindow *window;
-    sfEvent *event;
+    sfEvent event;
     char *title;
     my_theme_t *th;
     uint32_t gs_n;

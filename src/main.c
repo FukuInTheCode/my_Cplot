@@ -46,10 +46,8 @@ int main(void)
         .axis = sfWhite
     };
 
-    sfEvent event;
     my_plot_t plt = {
         .title = "test",
-        .event = &event,
         .gs_n = 2,
         .gs = gs
     };
@@ -62,8 +60,8 @@ int main(void)
     // show
     while (sfRenderWindow_isOpen(plt.window)) {
         // event handling
-        while (sfRenderWindow_pollEvent(plt.window, plt.event)) {
-            if (plt.event->type == sfEvtClosed) {
+        while (sfRenderWindow_pollEvent(plt.window, &(plt.event))) {
+            if (plt.event.type == sfEvtClosed) {
                 sfRenderWindow_close(plt.window);
             }
         }
