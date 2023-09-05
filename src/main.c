@@ -1,17 +1,22 @@
 #include "../includes/my.h"
 
+double sq(double x)
+{
+    return x * x;
+}
+
 int main(void)
 {
 
     // main
 
     uint32_t n = 8;
-    uint32_t n2 = 3;
+    uint32_t n2 = 100;
 
     double xs[] = { 0, 2, -1, 0, 1, 2, 3, 4 };
     double ys[] = { 0, 3, 2, 3, 1, 2, 3, 4 };
-    double xs2[] = { 2, 3, 10 };
-    double ys2[] = { -10, 3, 2 };
+    double xs2[n2];
+    double ys2[n2];
 
     my_theme_t g2_th = {
         .point = sfYellow,
@@ -22,9 +27,10 @@ int main(void)
         .type = function,
         .xs = xs2,
         .ys = ys2,
-        .pts_n = n2,
+        .pts_n = 0,
         .max_pts_n = n2,
-        .th = &g2_th
+        .th = &g2_th,
+        .f = sq
     };
     my_theme_t g1_th = {
         .point = sfRed,
