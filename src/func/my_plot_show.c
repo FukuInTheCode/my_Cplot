@@ -9,8 +9,10 @@ static void handling_shit(my_plot_t *plt)
 
 static void plot_graphs(my_plot_t *plt)
 {
-    for (uint32_t j = 0; j < plt->gs_n; ++j) {
-        my_plot_pts(plt , plt->gs[j]);
+    for (uint32_t i = 0; i < plt->gs_n; ++i) {
+        if (plt->gs[i]->type == function)
+            my_plot_func(plt, plt->gs[i]);
+        my_plot_pts(plt , plt->gs[i]);
     }
 }
 
