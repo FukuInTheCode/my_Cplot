@@ -32,7 +32,10 @@ typedef struct {
     uint32_t max_pts_n;
     union {
         func f;
-        func2 f2;
+        struct {
+            void *params;
+            func2 f2;
+        };
     };
     my_theme_t *th;
 } my_graph_t;
