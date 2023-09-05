@@ -11,15 +11,6 @@ void my_plot_show(my_plot_t *plt)
 
         my_plot_handle_mouse(plt);
 
-        // zoom handling
-        if (sfKeyboard_isKeyPressed(sfKeyA)) {
-            plt->zoom.x += 1;
-            plt->zoom.y += 1;
-        } else if (sfKeyboard_isKeyPressed(sfKeyZ)) {
-            plt->zoom.x = my_max_between(plt->zoom.x - 1, -plt->ratio.x);
-            plt->zoom.y = my_max_between(plt->zoom.y - 1, -plt->ratio.y);
-        }
-
         // keyboard moving handling
         if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
             if (sfKeyboard_isKeyPressed(sfKeyLControl))
