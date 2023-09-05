@@ -7,6 +7,13 @@ static void handling_shit(my_plot_t *plt)
     my_plot_handle_shift(plt);
 }
 
+static void plot_graphs(my_plot_t *plt)
+{
+    for (uint32_t j = 0; j < plt->gs_n; ++j) {
+        my_plot_pts(plt , plt->gs[j]);
+    }
+}
+
 void my_plot_show(my_plot_t *plt)
 {
     while (sfRenderWindow_isOpen(plt->window)) {
@@ -18,9 +25,6 @@ void my_plot_show(my_plot_t *plt)
         handling_shit(plt);
 
         my_plot_axis(plt);
-
-        for (uint32_t j = 0; j < plt->gs_n; ++j)
-            my_plot_pts(plt , plt->gs[j]);
 
         sfRenderWindow_display(plt->window);
 

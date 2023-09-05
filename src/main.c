@@ -19,6 +19,7 @@ int main(void)
     };
 
     my_graph_t g2 = {
+        .type = point,
         .xs = xs2,
         .ys = ys2,
         .pts_n = n2,
@@ -30,6 +31,7 @@ int main(void)
     };
 
     my_graph_t g1 = {
+        .type = point,
         .xs = xs,
         .ys = ys,
         .pts_n = n,
