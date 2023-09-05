@@ -15,24 +15,6 @@ void my_plot_show(my_plot_t *plt)
 
         my_plot_handle_shift(plt);
 
-        // axis plotting
-        sfVertex line2[] = {
-            {{0, window_size.y / 2 + plt->shift.y}, plt->th->axis, {0, 0}},
-            {{window_size.x, window_size.y / 2 + plt->shift.y}, plt->th->axis, {0, 0}}
-        };
-
-        sfVertex line[] = {
-            {{window_size.x / 2 + plt->shift.x, 0}, plt->th->axis, {0, 0}},
-            {{window_size.x / 2 + plt->shift.x, window_size.y}, plt->th->axis, {0, 0}}
-        };
-
-        if (line[0].position.x > 0 && line[0].position.x < window_size.x)
-            sfRenderWindow_drawPrimitives(plt->window, line, 2, sfLines, NULL);
-
-
-        if (line2[0].position.y > 0 && line2[0].position.y < window_size.y)
-            sfRenderWindow_drawPrimitives(plt->window, line2, 2, sfLines, NULL);
-
         // pts plotting
         for (uint32_t j = 0; j < plt->gs_n; ++j) {
             for (uint32_t i = 0; i < plt->gs[j]->pts_n; ++i) {
