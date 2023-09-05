@@ -58,6 +58,33 @@ int main(void)
             ratio.y = my_max_between(ratio.y - 1, 0);;
         }
 
+        if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
+            if (sfKeyboard_isKeyPressed(sfKeyLControl))
+                shift.x -= 10;
+            else
+                shift.x -= 1;
+        } else if (sfKeyboard_isKeyPressed(sfKeyRight))
+            if (sfKeyboard_isKeyPressed(sfKeyLControl))
+                shift.x += 10;
+            else
+                shift.x += 1;
+
+        if (sfKeyboard_isKeyPressed(sfKeyUp)) {
+            if (sfKeyboard_isKeyPressed(sfKeyLControl))
+                shift.y -= 10;
+            else
+                shift.y -= 1;
+        } else if (sfKeyboard_isKeyPressed(sfKeyDown))
+            if (sfKeyboard_isKeyPressed(sfKeyLControl))
+                shift.y += 10;
+            else
+                shift.y += 1;
+
+        if (sfKeyboard_isKeyPressed(sfKeyO)) {
+            shift.x = 0;
+            shift.y = 0;
+        }
+
         sfVertex line2[] = {
             {{0, window_size.y / 2 + shift.y}, sfWhite},
             {{window_size.x, window_size.y / 2 + shift.y}, sfWhite}
