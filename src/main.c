@@ -107,10 +107,12 @@ int main(void)
             {{window_size.x / 2 + shift.x, window_size.y}, sfWhite}
         };
 
-        sfRenderWindow_drawPrimitives(window, line, 2, sfLines, NULL);
+        if (line[0].position.x > 0 && line[0].position.x < window_size.x)
+            sfRenderWindow_drawPrimitives(window, line, 2, sfLines, NULL);
 
 
-        sfRenderWindow_drawPrimitives(window, line2, 2, sfLines, NULL);
+        if (line2[0].position.y > 0 && line2[0].position.y < window_size.y)
+            sfRenderWindow_drawPrimitives(window, line2, 2, sfLines, NULL);
 
         // pts plotting
         for (uint32_t i = 0; i < n; ++i) {
@@ -119,6 +121,8 @@ int main(void)
                 xs[i] * ratio.x + window_size.x / 2 - 10 + shift.x,
                 window_size.y - ys[i] * ratio.y - 10 - window_size.y / 2 + shift.y
             };
+            if (pos.x <= -20 || pos.x >= window_size.x || pos.y <= -20 || pos.y >= window_size.y)
+                continue;
             sfCircleShape_setPosition(pts, pos);
             sfCircleShape_setRadius(pts, 10);
             sfCircleShape_setFillColor(pts, sfRed);
