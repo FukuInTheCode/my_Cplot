@@ -15,6 +15,8 @@ void my_plot_show(my_plot_t *plt)
 
         my_plot_handle_shift(plt);
 
+        my_plot_axis(plt);
+
         // pts plotting
         for (uint32_t j = 0; j < plt->gs_n; ++j) {
             for (uint32_t i = 0; i < plt->gs[j]->pts_n; ++i) {
