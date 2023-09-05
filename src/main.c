@@ -54,8 +54,7 @@ int main(void)
 
     my_plot_create(&plt, &plt_th);
 
-    sfVector2u window_size = sfRenderWindow_getSize(plt.window);
-
+    my_plot_show(&plt);
     // free
     sfRenderWindow_destroy(plt.window);
     return 0;

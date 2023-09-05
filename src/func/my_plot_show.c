@@ -4,12 +4,6 @@ void my_plot_show(my_plot_t *plt)
 {
     sfVector2u window_size = sfRenderWindow_getSize(plt->window);
     while (sfRenderWindow_isOpen(plt->window)) {
-        // event handling
-        while (sfRenderWindow_pollEvent(plt->window, &(plt->event))) {
-            if (plt->event.type == sfEvtClosed) {
-                sfRenderWindow_close(plt->window);
-            }
-        }
 
         // plotting
 
