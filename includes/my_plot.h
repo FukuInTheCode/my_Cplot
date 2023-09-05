@@ -5,10 +5,12 @@
 #include "my_math.h"
 
 typedef double (*func)(double);
+typedef double (*func2)(void *);
 
 typedef enum {
     points,
-    function
+    function,
+    function2
 } graph_type;
 
 typedef union {
@@ -28,7 +30,10 @@ typedef struct {
     double *ys;
     uint32_t pts_n;
     uint32_t max_pts_n;
-    func f;
+    union {
+        func f;
+        func2 f2;
+    };
     my_theme_t *th;
 } my_graph_t;
 
