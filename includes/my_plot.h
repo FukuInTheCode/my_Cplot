@@ -32,6 +32,7 @@ typedef struct {
     sfVector2f ratio;
     sfVector2f shift;
     sfVector2f zoom;
+    bool is_pressed;
 } my_plot_t;
 
 #endif
