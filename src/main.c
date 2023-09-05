@@ -23,7 +23,7 @@ int main(void)
 
     sfVector2i mouse_vec_save = {0, 0};
 
-    uint8_t is_pressed = 0;
+    bool is_pressed = false;
 
     // calc ratio
     sfVector2u window_size = sfRenderWindow_getSize(window);
@@ -49,17 +49,17 @@ int main(void)
 
         // mouse handling
         if (sfMouse_isButtonPressed(sfMouseLeft)) {
-            if (is_pressed == 1) {
+            if (is_pressed) {
                 sfVector2i tmp = sfMouse_getPosition(NULL);
                 shift.x += tmp.x - mouse_vec_save.x;
                 shift.y += tmp.y - mouse_vec_save.y;
                 mouse_vec_save = tmp;
             } else {
                 mouse_vec_save = sfMouse_getPosition(NULL);
-                is_pressed = 1;
+                is_pressed = true;
             }
-        } else if (is_pressed == 1)
-            is_pressed = 0;
+        } else if (is_pressed)
+            is_pressed = false;
 
         // zoom handling
         if (sfKeyboard_isKeyPressed(sfKeyA)) {

@@ -7,6 +7,7 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include <string.h>
+#include <stdbool.h>
 #include "my_plot.h"
 
 #define ARRAY_LENGTH(arr) sizeof(arr) / sizeof(arr[0])
