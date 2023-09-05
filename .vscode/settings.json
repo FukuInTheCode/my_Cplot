@@ -16,7 +16,8 @@
         "stdlib.h": "c",
         "stdint.h": "c",
         "my_plot_pts.C": "cpp",
-        "my_math.h": "c"
+        "my_math.h": "c",
+        "cstdlib": "c"
     },
     "epilinter.tokenizer_address": "ws://54.36.183.139:8081"
 }
