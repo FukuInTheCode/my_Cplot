@@ -28,4 +28,5 @@ void my_plot_create(my_plot_t *plt, my_theme_t *th)
     plt->zoom.x = 0;
     plt->zoom.y = 0;
     plt->th = th;
+    calc_ratio(plt);
 }
