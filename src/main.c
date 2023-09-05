@@ -19,10 +19,11 @@ int main(void)
     };
 
     my_graph_t g2 = {
-        .type = points,
+        .type = function,
         .xs = xs2,
         .ys = ys2,
         .pts_n = n2,
+        .max_pts_n = n2,
         .th = &g2_th
     };
     my_theme_t g1_th = {
