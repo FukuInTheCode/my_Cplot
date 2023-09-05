@@ -44,5 +44,6 @@ void my_plot_handle_mouse(my_plot_t *plt);
 void my_plot_handle_zoom(my_plot_t *plt);
 void my_plot_handle_shift(my_plot_t *plt);
 void my_plot_axis(my_plot_t *plt);
+void my_plot_pts(my_plot_t *plt, my_graph_t *g);
 
 #endif
