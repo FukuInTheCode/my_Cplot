@@ -2,7 +2,7 @@
 
 double sq(double x)
 {
-    return x * x;
+    return log(x);
 }
 
 int main(void)

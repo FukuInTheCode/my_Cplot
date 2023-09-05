@@ -17,12 +17,12 @@ static void vertical_shift(my_plot_t *plt)
 
 static void hor_shift(my_plot_t *plt)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyUp)) {
+    if (sfKeyboard_isKeyPressed(sfKeyDown)) {
         if (sfKeyboard_isKeyPressed(sfKeyLControl))
             plt->shift.y -= 10;
         else
             plt->shift.y -= 1;
-    } else if (sfKeyboard_isKeyPressed(sfKeyDown)) {
+    } else if (sfKeyboard_isKeyPressed(sfKeyUp)) {
         if (sfKeyboard_isKeyPressed(sfKeyLControl))
             plt->shift.y += 10;
         else
