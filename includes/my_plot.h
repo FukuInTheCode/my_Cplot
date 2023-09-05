@@ -4,6 +4,11 @@
 #include "SFML/Graphics.h"
 #include "my_math.h"
 
+typedef enum {
+    points,
+    function
+} graph_type;
+
 typedef union {
     struct {
         sfColor bg;
@@ -16,6 +21,7 @@ typedef union {
 } my_theme_t;
 
 typedef struct {
+    graph_type type;
     double *xs;
     double *ys;
     uint32_t pts_n;
