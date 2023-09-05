@@ -1,6 +1,6 @@
 #include "../../includes/my.h"
 
-void my_plot_handle_shift(my_plot_t *plt)
+static void vertical_shift(my_plt_t *plt)
 {
     if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
         if (sfKeyboard_isKeyPressed(sfKeyLControl))
@@ -13,6 +13,10 @@ void my_plot_handle_shift(my_plot_t *plt)
         else
             plt->shift.x += 1;
     }
+}
+
+void my_plot_handle_shift(my_plot_t *plt)
+{
     if (sfKeyboard_isKeyPressed(sfKeyUp)) {
         if (sfKeyboard_isKeyPressed(sfKeyLControl))
             plt->shift.y -= 10;
