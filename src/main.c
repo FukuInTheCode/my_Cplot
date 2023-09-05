@@ -3,6 +3,8 @@
 int main(void)
 {
 
+    // main
+
     uint32_t n = 8;
 
     double xs[] = { 0, 2, -1, 0, 1, 2, 3, 4 };
@@ -13,12 +15,7 @@ int main(void)
     sfVideoMode mode = {1000, 1000, 32};
     sfRenderWindow *window = sfRenderWindow_create(mode, title, sfDefaultStyle, NULL);
 
-    sfVector2u window_size = sfRenderWindow_getSize(window);
-
-    sfVector2f ratio = {
-        (window_size.x - 10) / (my_max(xs, n) - my_min(xs, n) + 0.1) / 2,
-        (window_size.y - 10) / (my_max(ys, n) - my_min(ys, n) + 0.1) / 2
-    };
+    // init
 
     sfVector2f shift = {0, 0};
 
@@ -26,17 +23,29 @@ int main(void)
 
     uint8_t is_pressed = 0;
 
+    // calc ratio
+    sfVector2u window_size = sfRenderWindow_getSize(window);
 
+    sfVector2f ratio = {
+        (window_size.x - 10) / (my_max(xs, n) - my_min(xs, n) + 0.1) / 2,
+        (window_size.y - 10) / (my_max(ys, n) - my_min(ys, n) + 0.1) / 2
+    };
+
+
+    // show
     while (sfRenderWindow_isOpen(window)) {
-
+        // event handling
         while (sfRenderWindow_pollEvent(window, &event)) {
             if (event.type == sfEvtClosed) {
                 sfRenderWindow_close(window);
             }
         }
 
+        // plotting
+
         sfRenderWindow_clear(window, sfBlack);
 
+        // mouse handling
         if (sfMouse_isButtonPressed(sfMouseLeft)) {
             if (is_pressed == 1) {
                 sfVector2i tmp = sfMouse_getPosition(NULL);
@@ -50,6 +59,7 @@ int main(void)
         } else if (is_pressed == 1)
             is_pressed = 0;
 
+        // zoom handling
         if (sfKeyboard_isKeyPressed(sfKeyA)) {
             ratio.x += 1;
             ratio.y += 1;
@@ -58,6 +68,7 @@ int main(void)
             ratio.y = my_max_between(ratio.y - 1, 0);;
         }
 
+        // keyboard moving handling
         if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
             if (sfKeyboard_isKeyPressed(sfKeyLControl))
                 shift.x -= 10;
@@ -85,6 +96,7 @@ int main(void)
             shift.y = 0;
         }
 
+        // axis plotting
         sfVertex line2[] = {
             {{0, window_size.y / 2 + shift.y}, sfWhite},
             {{window_size.x, window_size.y / 2 + shift.y}, sfWhite}
@@ -100,6 +112,7 @@ int main(void)
 
         sfRenderWindow_drawPrimitives(window, line2, 2, sfLines, NULL);
 
+        // pts plotting
         for (uint32_t i = 0; i < n; ++i) {
             sfCircleShape *pts = sfCircleShape_create();
             sfVector2f pos = {
@@ -113,10 +126,11 @@ int main(void)
             sfCircleShape_destroy(pts);
         }
 
+        // end plotting
         sfRenderWindow_display(window);
 
     }
-
+    // free
     sfRenderWindow_destroy(window);
     return 0;
 }
