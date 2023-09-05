@@ -68,11 +68,11 @@ int main(void)
 
         // zoom handling
         if (sfKeyboard_isKeyPressed(sfKeyA)) {
-            plt.ratio.x += 1;
-            plt.ratio.y += 1;
+            plt.zoom.x += 1;
+            plt.zoom.y += 1;
         } else if (sfKeyboard_isKeyPressed(sfKeyZ)) {
-            plt.ratio.x = my_max_between(plt.ratio.x - 1, 0);
-            plt.ratio.y = my_max_between(plt.ratio.y - 1, 0);;
+            plt.zoom.x = my_max_between(plt.zoom.x - 1, -plt.ratio.x);
+            plt.zoom.y = my_max_between(plt.zoom.y - 1, -plt.ratio.y);
         }
 
         // keyboard moving handling
@@ -101,8 +101,8 @@ int main(void)
         if (sfKeyboard_isKeyPressed(sfKeyO)) {
             plt.shift.x = 0;
             plt.shift.y = 0;
-            plt.ratio.x = (window_size.x - 10) / (my_max(xs, n) - my_min(xs, n) + 0.1) / 2;
-            plt.ratio.y = (window_size.y - 10) / (my_max(ys, n) - my_min(ys, n) + 0.1) / 2;
+            plt.zoom.x = 0;
+            plt.zoom.y = 0;
         }
 
         // axis plotting
@@ -127,8 +127,8 @@ int main(void)
         for (uint32_t i = 0; i < n; ++i) {
             sfCircleShape *pts = sfCircleShape_create();
             sfVector2f pos = {
-                xs[i] * plt.ratio.x + window_size.x / 2 - 10 + plt.shift.x,
-                window_size.y - ys[i] * plt.ratio.y - 10 - window_size.y / 2 + plt.shift.y
+                xs[i] * (plt.ratio.x + plt.zoom.x) + window_size.x / 2 - 10 + plt.shift.x,
+                window_size.y - ys[i] * (plt.ratio.y + plt.zoom.y) - 10 - window_size.y / 2 + plt.shift.y
             };
             if (pos.x <= -20 || pos.x >= window_size.x || pos.y <= -20 || pos.y >= window_size.y)
                 continue;
