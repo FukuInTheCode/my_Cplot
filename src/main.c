@@ -42,6 +42,7 @@ int main(void)
         .mouse_save.y = 0,
         .zoom.x = 0,
         .zoom.y = 0,
+        .gs_n = 1,
         .gs = gs
     };
 
@@ -141,19 +142,21 @@ int main(void)
             sfRenderWindow_drawPrimitives(plt.window, line2, 2, sfLines, NULL);
 
         // pts plotting
-        for (uint32_t i = 0; i < n; ++i) {
-            sfCircleShape *pts = sfCircleShape_create();
-            sfVector2f pos = {
-                xs[i] * (plt.ratio.x + plt.zoom.x) + window_size.x / 2 - 10 + plt.shift.x,
-                window_size.y - ys[i] * (plt.ratio.y + plt.zoom.y) - 10 - window_size.y / 2 + plt.shift.y
-            };
-            if (pos.x <= -20 || pos.x >= window_size.x || pos.y <= -20 || pos.y >= window_size.y)
-                continue;
-            sfCircleShape_setPosition(pts, pos);
-            sfCircleShape_setRadius(pts, 10);
-            sfCircleShape_setFillColor(pts, sfRed);
-            sfRenderWindow_drawCircleShape(plt.window, pts, NULL);
-            sfCircleShape_destroy(pts);
+        for (uint32_t j = 0; j < plt.gs_n; ++j) {
+            for (uint32_t i = 0; i < plt.gs[j]->pts_n; ++i) {
+                sfCircleShape *pts = sfCircleShape_create();
+                sfVector2f pos = {
+                    plt.gs[j]->xs[i] * (plt.ratio.x + plt.zoom.x) + window_size.x / 2 - 10 + plt.shift.x,
+                    window_size.y - plt.gs[j]->ys[i] * (plt.ratio.y + plt.zoom.y) - 10 - window_size.y / 2 + plt.shift.y
+                };
+                if (pos.x <= -20 || pos.x >= window_size.x || pos.y <= -20 || pos.y >= window_size.y)
+                    continue;
+                sfCircleShape_setPosition(pts, pos);
+                sfCircleShape_setRadius(pts, plt.gs[j]->th->radius);
+                sfCircleShape_setFillColor(pts, plt.gs[j]->th->point);
+                sfRenderWindow_drawCircleShape(plt.window, pts, NULL);
+                sfCircleShape_destroy(pts);
+            }
         }
 
         // end plotting
