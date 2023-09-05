@@ -3,50 +3,93 @@
 int main(void)
 {
 
+    uint32_t n = 8;
 
-    my_plot_t plt = {.title = "Test"};
-    plt.mode.height = 1000;
-    plt.mode.width = 1000;
-    plt.mode.bitsPerPixel = 32;
-    plt.window = sfRenderWindow_create(plt.mode, plt.title, sfDefaultStyle, NULL);
+    double xs[] = { 0, 2, -1, 0, 1, 2, 3, 4 };
+    double ys[] = { 0, 3, 2, 3, 1, 2, 3, 4 };
 
-    uint32_t n = 4;
+    char *title = "Test";
+    sfEvent event;
+    sfVideoMode mode = {1000, 1000, 32};
+    sfRenderWindow *window = sfRenderWindow_create(mode, title, sfDefaultStyle, NULL);
 
-    double xs[] = { 1, 2, 3, 4 };
-    double ys[] = { 1, 2, 3, 4 };
-
-    sfVector2u window_size = sfRenderWindow_getSize(plt.window);
+    sfVector2u window_size = sfRenderWindow_getSize(window);
 
     sfVector2f ratio = {
-        window_size.x / (my_max(xs, n) - my_min(xs, n)),
-        window_size.y / (my_max(ys, n) - my_min(ys, n))
+        (window_size.x - 10) / (my_max(xs, n) - my_min(xs, n) + 0.1) / 2,
+        (window_size.y - 10) / (my_max(ys, n) - my_min(ys, n) + 0.1) / 2
     };
 
+    sfVector2f shift = {0, 0};
 
-    while (sfRenderWindow_isOpen(plt.window)) {
+    sfVector2i mouse_vec_save = {0, 0};
 
-        while (sfRenderWindow_pollEvent(plt.window, &(plt.event))) {
-            if (plt.event.type == sfEvtClosed) {
-                sfRenderWindow_close(plt.window);
+    uint8_t is_pressed = 0;
+
+
+    while (sfRenderWindow_isOpen(window)) {
+
+        while (sfRenderWindow_pollEvent(window, &event)) {
+            if (event.type == sfEvtClosed) {
+                sfRenderWindow_close(window);
             }
         }
 
-        sfRenderWindow_clear(plt.window, sfWhite);
+        sfRenderWindow_clear(window, sfBlack);
+
+        if (sfMouse_isButtonPressed(sfMouseLeft)) {
+            if (is_pressed == 1) {
+                sfVector2i tmp = sfMouse_getPosition(NULL);
+                shift.x += tmp.x - mouse_vec_save.x;
+                shift.y += tmp.y - mouse_vec_save.y;
+                mouse_vec_save = tmp;
+            } else {
+                mouse_vec_save = sfMouse_getPosition(NULL);
+                is_pressed = 1;
+            }
+        } else if (is_pressed == 1)
+            is_pressed = 0;
+
+        if (sfKeyboard_isKeyPressed(sfKeyA)) {
+            ratio.x += 1;
+            ratio.y += 1;
+        } else if (sfKeyboard_isKeyPressed(sfKeyZ)) {
+            ratio.x = my_max_between(ratio.x - 1, 0);
+            ratio.y = my_max_between(ratio.y - 1, 0);;
+        }
+
+        sfVertex line2[] = {
+            {{0, window_size.y / 2 + shift.y}, sfWhite},
+            {{window_size.x, window_size.y / 2 + shift.y}, sfWhite}
+        };
+
+        sfVertex line[] = {
+            {{window_size.x / 2 + shift.x, 0}, sfWhite},
+            {{window_size.x / 2 + shift.x, window_size.y}, sfWhite}
+        };
+
+        sfRenderWindow_drawPrimitives(window, line, 2, sfLines, NULL);
+
+
+        sfRenderWindow_drawPrimitives(window, line2, 2, sfLines, NULL);
+
         for (uint32_t i = 0; i < n; ++i) {
             sfCircleShape *pts = sfCircleShape_create();
             sfVector2f pos = {
-                xs[i] * ratio.x,
-                ys[i] * ratio.y
+                xs[i] * ratio.x + window_size.x / 2 - 10 + shift.x,
+                window_size.y - ys[i] * ratio.y - 10 - window_size.y / 2 + shift.y
             };
             sfCircleShape_setPosition(pts, pos);
             sfCircleShape_setRadius(pts, 10);
-            sfCircleShape_setFillColor(pts, sfBlack);
-            sfRenderWindow_drawCircleShape(plt.window, pts, NULL);
+            sfCircleShape_setFillColor(pts, sfRed);
+            sfRenderWindow_drawCircleShape(window, pts, NULL);
             sfCircleShape_destroy(pts);
         }
 
+        sfRenderWindow_display(window);
+
     }
 
-    sfRenderWindow_destroy(plt.window);
+    sfRenderWindow_destroy(window);
     return 0;
 }

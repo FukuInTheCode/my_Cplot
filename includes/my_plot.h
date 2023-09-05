@@ -13,8 +13,7 @@ typedef struct {
 
 typedef struct {
     sfRenderWindow *window;
-    sfEvent event;
-    sfVideoMode mode;
+    sfEvent *event;
     char *title;
 } my_plot_t;
 
