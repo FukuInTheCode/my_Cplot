@@ -56,12 +56,6 @@ int main(void)
 
     my_plot_create(&plt, &plt_th);
 
-    // calc ratio
-    sfVector2u window_size = sfRenderWindow_getSize(plt.window);
-
-    plt.ratio.x = (window_size.x - 10) / (my_max(xs, n) - my_min(xs, n) + 0.1) / 2;
-    plt.ratio.y = (window_size.y - 10) / (my_max(ys, n) - my_min(ys, n) + 0.1) / 2;
-
     // show
     while (sfRenderWindow_isOpen(plt.window)) {
         // event handling
