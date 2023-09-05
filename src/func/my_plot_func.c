@@ -27,7 +27,7 @@ void my_plot_func2(my_plot_t *plt, my_graph_t *g)
     g->pts_n = 0;
     for (; x_i < x_end && g->pts_n < g->max_pts_n; x_i += x_steps) {
         g->xs[g->pts_n] = x_i;
-        g->ys[g->pts_n] = g->f(x_i, g->params);
+        g->ys[g->pts_n] = g->f2(x_i, g->params);
         (g->pts_n)++;
     }
 }

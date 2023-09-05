@@ -1,8 +1,18 @@
 #include "../includes/my.h"
 
+typedef struct {
+    int a;
+    int b;
+} my_p_t;
+
 double sq(double x)
 {
-    return log(x);
+    return x * x;
+}
+
+double sq2(double x, my_p_t *p)
+{
+    return (x + p->a) * (x + p->a) + p->b;
 }
 
 int main(void)
@@ -17,6 +27,10 @@ int main(void)
     double ys[] = { 0, 3, 2, 3, 1, 2, 3, 4 };
     double xs2[n2];
     double ys2[n2];
+    double xs3[n2];
+    double ys3[n2];
+
+    my_p_t ps = {.a = 1,  .b = 2};
 
     my_theme_t g2_th = {
         .point = sfYellow,
@@ -31,6 +45,21 @@ int main(void)
         .max_pts_n = n2,
         .th = &g2_th,
         .f = sq
+    };
+    my_theme_t g3_th = {
+        .point = sfBlue,
+        .radius = 13
+    };
+
+    my_graph_t g3 = {
+        .type = function2,
+        .xs = xs3,
+        .ys = ys3,
+        .pts_n = 0,
+        .max_pts_n = n2,
+        .th = &g3_th,
+        .f2 = sq2,
+        .params = (void *)(&ps)
     };
     my_theme_t g1_th = {
         .point = sfRed,
@@ -47,7 +76,8 @@ int main(void)
 
     my_graph_t *gs[] = {
         &g1,
-        &g2
+        &g2,
+        &g3
     };
 
     my_theme_t plt_th = {
@@ -57,7 +87,7 @@ int main(void)
 
     my_plot_t plt = {
         .title = "test",
-        .gs_n = 2,
+        .gs_n = 3,
         .gs = gs
     };
 

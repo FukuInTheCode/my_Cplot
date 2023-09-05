@@ -5,7 +5,7 @@
 #include "my_math.h"
 
 typedef double (*func)(double);
-typedef double (*func2)(void *);
+typedef double (*func2)(double, void *);
 
 typedef enum {
     points,
@@ -63,5 +63,6 @@ void my_plot_handle_shift(my_plot_t *plt);
 void my_plot_axis(my_plot_t *plt);
 void my_plot_pts(my_plot_t *plt, my_graph_t *g);
 void my_plot_func(my_plot_t *plt, my_graph_t *g);
+void my_plot_func2(my_plot_t *plt, my_graph_t *g);
 
 #endif
