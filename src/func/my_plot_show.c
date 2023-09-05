@@ -11,6 +11,8 @@ void my_plot_show(my_plot_t *plt)
 
         my_plot_handle_mouse(plt);
 
+        my_plot_handle_zoom(plt);
+
         // keyboard moving handling
         if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
             if (sfKeyboard_isKeyPressed(sfKeyLControl))
