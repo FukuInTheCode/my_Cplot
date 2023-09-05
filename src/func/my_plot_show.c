@@ -1,6 +1,6 @@
 #include "../../includes/my.h"
 
-static handling_shit(my_plot_t *plt)
+static void handling_shit(my_plot_t *plt)
 {
     my_plot_handle_mouse(plt);
     my_plot_handle_zoom(plt);
