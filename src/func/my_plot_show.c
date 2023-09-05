@@ -9,6 +9,8 @@ void my_plot_show(my_plot_t *plt)
 
         sfRenderWindow_clear(plt->window, plt->th->bg);
 
+        my_plot_handle_mouse(plt);
+
         // zoom handling
         if (sfKeyboard_isKeyPressed(sfKeyA)) {
             plt->zoom.x += 1;
