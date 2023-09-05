@@ -4,6 +4,8 @@
 #include "SFML/Graphics.h"
 #include "my_math.h"
 
+typedef double (*func)(double);
+
 typedef enum {
     points,
     function
@@ -26,7 +28,7 @@ typedef struct {
     double *ys;
     uint32_t pts_n;
     uint32_t max_pts_n;
-    double(*func)(double) f;
+    func f;
     my_theme_t *th;
 } my_graph_t;
 
