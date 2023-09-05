@@ -28,6 +28,7 @@ typedef struct {
     sfEvent *event;
     char *title;
     my_theme_t *th;
+    uint32_t gs_n;
     my_graph_t **gs;
     sfVector2f ratio;
     sfVector2f shift;

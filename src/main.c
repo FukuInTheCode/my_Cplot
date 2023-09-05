@@ -10,6 +10,22 @@ int main(void)
     double xs[] = { 0, 2, -1, 0, 1, 2, 3, 4 };
     double ys[] = { 0, 3, 2, 3, 1, 2, 3, 4 };
 
+    my_theme_t g1_th = {
+        .point = sfRed,
+        .radius = 10
+    };
+
+    my_graph_t g1 = {
+        .xs = xs,
+        .ys = ys,
+        .pts_n = n,
+        .th = &g1_th
+    };
+
+    my_graph_t *gs[] = {
+        &g1
+    };
+
     my_theme_t plt_th = {
         .bg = sfBlack,
         .axis = sfWhite
@@ -25,7 +41,8 @@ int main(void)
         .mouse_save.x = 0,
         .mouse_save.y = 0,
         .zoom.x = 0,
-        .zoom.y = 0
+        .zoom.y = 0,
+        .gs = gs
     };
 
     // create window
