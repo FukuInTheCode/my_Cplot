@@ -2,14 +2,14 @@
 
 static void vertical_shift(my_plot_t *plt)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
+    if (sfKeyboard_isKeyPressed(sfKeyRight)) {
         if (sfKeyboard_isKeyPressed(sfKeyLControl))
             plt->shift.x -= 10;
         else if (sfKeyboard_isKeyPressed(sfKeyLShift))
             plt->shift.x -= 50;
         else
             plt->shift.x -= 1;
-    } else if (sfKeyboard_isKeyPressed(sfKeyRight)) {
+    } else if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
         if (sfKeyboard_isKeyPressed(sfKeyLControl))
             plt->shift.x += 10;
         else if (sfKeyboard_isKeyPressed(sfKeyLShift))
