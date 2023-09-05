@@ -9,20 +9,6 @@ void my_plot_show(my_plot_t *plt)
 
         sfRenderWindow_clear(plt->window, plt->th->bg);
 
-        // mouse handling
-        if (sfMouse_isButtonPressed(sfMouseLeft)) {
-            if (plt->is_pressed) {
-                sfVector2i tmp = sfMouse_getPosition(NULL);
-                plt->shift.x += tmp.x - plt->mouse_save.x;
-                plt->shift.y += tmp.y - plt->mouse_save.y;
-                plt->mouse_save = tmp;
-            } else {
-                plt->mouse_save = sfMouse_getPosition(NULL);
-                plt->is_pressed = true;
-            }
-        } else if (plt->is_pressed)
-            plt->is_pressed = false;
-
         // zoom handling
         if (sfKeyboard_isKeyPressed(sfKeyA)) {
             plt->zoom.x += 1;
