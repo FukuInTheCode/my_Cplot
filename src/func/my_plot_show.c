@@ -12,6 +12,9 @@ static void plot_graphs(my_plot_t *plt)
     for (uint32_t i = 0; i < plt->gs_n; ++i) {
         if (plt->gs[i]->type == function)
             my_plot_func(plt, plt->gs[i]);
+        else if (plt->gs[i]->type == function2)
+            my_plot_func2(plt, plt->gs[i]);
+
         my_plot_pts(plt , plt->gs[i]);
     }
 }
