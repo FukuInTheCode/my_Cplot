@@ -2,7 +2,7 @@
 
 static void calc_ratio(my_plot_t *plt)
 {
-    sfVector2u window_size = sfRenderWindow_getSize(plt.window);
+    sfVector2u window_size = sfRenderWindow_getSize(plt->window);
     double max_x = my_max(plt->gs[0]->xs, plt->gs[0]->pts_n);
     double min_x = my_min(plt->gs[0]->xs, plt->gs[0]->pts_n);
     double max_y = my_max(plt->gs[0]->ys, plt->gs[0]->pts_n);
@@ -13,8 +13,8 @@ static void calc_ratio(my_plot_t *plt)
         max_y = my_max_between(max_x,  my_max(plt->gs[i]->ys, plt->gs[i]->pts_n));
         min_y = my_min_between(max_x,  my_min(plt->gs[i]->ys, plt->gs[i]->pts_n));
     }
-    plt.ratio.x = (window_size.x - 10) / (max_x - min_x + 0.1) / 2;
-    plt.ratio.y = (window_size.y - 10) / (max_y - min_y + 0.1) / 2;
+    plt->ratio.x = (window_size.x - 10) / (max_x - min_x + 0.1) / 2;
+    plt->ratio.y = (window_size.y - 10) / (max_y - min_y + 0.1) / 2;
 }
 
 void my_plot_create(my_plot_t *plt, my_theme_t *th)

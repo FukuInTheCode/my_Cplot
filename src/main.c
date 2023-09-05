@@ -10,8 +10,8 @@ int main(void)
 
     double xs[] = { 0, 2, -1, 0, 1, 2, 3, 4 };
     double ys[] = { 0, 3, 2, 3, 1, 2, 3, 4 };
-    double xs2[] = { 2, 3, 4 };
-    double ys2[] = { 0, 3, 2 };
+    double xs2[] = { 2, 3, 10 };
+    double ys2[] = { -10, 3, 2 };
 
     my_theme_t g2_th = {
         .point = sfYellow,
@@ -55,6 +55,9 @@ int main(void)
     };
 
     my_plot_create(&plt, &plt_th);
+
+    sfVector2u window_size = sfRenderWindow_getSize(plt.window);
+
 
     // show
     while (sfRenderWindow_isOpen(plt.window)) {
