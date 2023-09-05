@@ -26,6 +26,8 @@ void my_plot_show(my_plot_t *plt)
 
         my_plot_axis(plt);
 
+        plot_graphs(plt);
+
         sfRenderWindow_display(plt->window);
 
     }
