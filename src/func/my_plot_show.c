@@ -13,6 +13,8 @@ void my_plot_show(my_plot_t *plt)
 
         my_plot_handle_zoom(plt);
 
+        my_plot_handle_shift(plt);
+
         // axis plotting
         sfVertex line2[] = {
             {{0, window_size.y / 2 + plt->shift.y}, plt->th->axis, {0, 0}},
