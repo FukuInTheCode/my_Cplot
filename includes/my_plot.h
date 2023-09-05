@@ -33,6 +33,7 @@ typedef struct {
     sfVector2f shift;
     sfVector2f zoom;
     bool is_pressed;
+    sfVector2i mouse_save;
 } my_plot_t;
 
 #endif

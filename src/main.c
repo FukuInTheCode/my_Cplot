@@ -17,9 +17,7 @@ int main(void)
     sfVideoMode mode = {1000, 1000, 32};
     plt.window = sfRenderWindow_create(mode, title, sfDefaultStyle, NULL);
 
-    // init
-
-    sfVector2f shift = {0, 0};
+    plt.shift = {0, 0};
 
     sfVector2i mouse_vec_save = {0, 0};
 
