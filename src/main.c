@@ -10,10 +10,12 @@ int main(void)
     double xs[] = { 0, 2, -1, 0, 1, 2, 3, 4 };
     double ys[] = { 0, 3, 2, 3, 1, 2, 3, 4 };
 
-    char *title = "Test";
     sfEvent event;
+    my_plot_t plt = {.title = "test", .event = &event};
+
+    // create window
     sfVideoMode mode = {1000, 1000, 32};
-    sfRenderWindow *window = sfRenderWindow_create(mode, title, sfDefaultStyle, NULL);
+    plt.window = sfRenderWindow_create(mode, title, sfDefaultStyle, NULL);
 
     // init
 
