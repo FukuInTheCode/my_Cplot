@@ -38,5 +38,6 @@ typedef struct {
 } my_plot_t;
 
 void my_plot_create(my_plot_t *plt, my_theme_t *th);
+void my_plot_show(my_plot_t *plt);
 
 #endif
