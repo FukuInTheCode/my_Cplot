@@ -2,6 +2,7 @@
 #define MY_CPLOT_H
 
 #include "SFML/Graphics.h"
+#include "my_math.h"
 
 typedef struct {
     double *xs;
