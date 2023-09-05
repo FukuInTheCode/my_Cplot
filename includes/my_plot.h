@@ -37,4 +37,6 @@ typedef struct {
     sfVector2i mouse_save;
 } my_plot_t;
 
+void my_plot_create(my_plot_t *plt, my_theme_t *th);
+
 #endif
