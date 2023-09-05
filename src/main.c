@@ -51,19 +51,9 @@ int main(void)
         .title = "test",
         .event = &event,
         .th = &plt_th,
-        .shift.x = 0,
-        .shift.y = 0,
-        .mouse_save.x = 0,
-        .mouse_save.y = 0,
-        .zoom.x = 0,
-        .zoom.y = 0,
         .gs_n = 2,
         .gs = gs
     };
-
-    // create window
-    sfVideoMode mode = {1000, 1000, 32};
-    plt.window = sfRenderWindow_create(mode, plt.title, sfDefaultStyle, NULL);
 
     // calc ratio
     sfVector2u window_size = sfRenderWindow_getSize(plt.window);
