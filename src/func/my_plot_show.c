@@ -16,13 +16,13 @@ void my_plot_show(my_plot_t *plt)
 
         sfRenderWindow_clear(plt->window, plt->th->bg);
 
+        handling_shit(plt);
+
         my_plot_axis(plt);
 
-        // pts plotting
         for (uint32_t j = 0; j < plt->gs_n; ++j)
             my_plot_pts(plt , plt->gs[j]);
 
-        // end plotting
         sfRenderWindow_display(plt->window);
 
     }
