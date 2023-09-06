@@ -87,13 +87,13 @@ int main(void)
 
     my_plot_t plt = {
         .title = "test",
-        .gs_n = 3,
-        .gs = gs
+        .gs_n = 0
     };
 
     my_plot_create(&plt, &plt_th);
 
     my_plot_show(&plt);
-    
+
+    my_plot_free(&plt);
     return 0;
 }
