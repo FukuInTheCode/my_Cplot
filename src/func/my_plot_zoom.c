@@ -3,7 +3,11 @@
 static void handle_zoom(my_plot_t *plt)
 {
     if (sfKeyboard_isKeyPressed(sfKeyA)) {
-        if (sfKeyboard_isKeyPressed(sfKeyLShift)) {
+        if (sfKeyboard_isKeyPressed(sfKeyLControl) &&\
+            sfKeyboard_isKeyPressed(sfKeyLShift)) {
+            plt->zoom.x += 50;
+            plt->zoom.y += 50;
+        } else if (sfKeyboard_isKeyPressed(sfKeyLShift)) {
             plt->zoom.x += 10;
             plt->zoom.y += 10;
         } else if (sfKeyboard_isKeyPressed(sfKeyLControl)) {
@@ -19,7 +23,11 @@ static void handle_zoom(my_plot_t *plt)
 static void handle_dezoom(my_plot_t *plt)
 {
     if (sfKeyboard_isKeyPressed(sfKeyZ)) {
-        if (sfKeyboard_isKeyPressed(sfKeyLShift)) {
+        if (sfKeyboard_isKeyPressed(sfKeyLControl) &&\
+            sfKeyboard_isKeyPressed(sfKeyLShift)) {
+            plt->zoom.x -= 50;
+            plt->zoom.y -= 50;
+        } else if (sfKeyboard_isKeyPressed(sfKeyLShift)) {
             plt->zoom.x -= 10;
             plt->zoom.y -= 10;
         } else if (sfKeyboard_isKeyPressed(sfKeyLControl)) {
