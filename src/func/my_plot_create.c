@@ -12,9 +12,9 @@ static void calc_ratio(my_plot_t *plt)
                                                 plt->gs[i]->pts_n));
         min_x = my_min_between(min_x,  my_min(plt->gs[i]->xs,\
                                                 plt->gs[i]->pts_n));
-        max_y = my_max_between(max_x,  my_max(plt->gs[i]->ys,\
+        max_y = my_max_between(max_y,  my_max(plt->gs[i]->ys,\
                                                 plt->gs[i]->pts_n));
-        min_y = my_min_between(max_x,  my_min(plt->gs[i]->ys,\
+        min_y = my_min_between(min_y,  my_min(plt->gs[i]->ys,\
                                                 plt->gs[i]->pts_n));
     }
     plt->ratio.x = (window_size.x - 10) / (max_x - min_x + 0.1) / 2;
