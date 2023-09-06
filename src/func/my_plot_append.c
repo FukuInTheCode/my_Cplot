@@ -14,5 +14,5 @@ void my_plot_append(my_plot_t *plt, my_graph_t *g)
     plt->gs[(plt->gs_n)++] = g;
 
     if (plt->gs_n > 1)
-        free(temp);
+        free(tmp);
 }

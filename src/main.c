@@ -74,12 +74,6 @@ int main(void)
         .th = &g1_th
     };
 
-    my_graph_t *gs[] = {
-        &g1,
-        &g2,
-        &g3
-    };
-
     my_theme_t plt_th = {
         .bg = sfBlack,
         .axis = sfWhite
@@ -91,6 +85,8 @@ int main(void)
     };
 
     my_plot_create(&plt, &plt_th);
+
+    my_plot_append(&plt, &g1);
 
     my_plot_show(&plt);
 
