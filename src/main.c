@@ -79,10 +79,7 @@ int main(void)
         .axis = sfWhite
     };
 
-    my_plot_t plt = {
-        .title = "test",
-        .gs_n = 0
-    };
+    PLOT_DECLA(plt, test);
 
     my_plot_create(&plt, &plt_th);
 
