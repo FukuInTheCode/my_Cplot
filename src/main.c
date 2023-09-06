@@ -21,12 +21,9 @@ int main(void)
     // main
 
     uint32_t n = 8;
-    uint32_t n2 = 100;
 
     double xs[] = { 0, 2, -1, 0, 1, 2, 3, 4 };
     double ys[] = { 0, 3, 2, 3, 1, 2, 3, 4 };
-    double ys2[n2];
-    double xs2[n2];
 
     my_p_t ps = {.a = 1,  .b = 2};
 
@@ -36,14 +33,9 @@ int main(void)
     };
 
     my_graph_t g2 = {
-        .type = function,
-        .xs = xs2,
-        .ys = ys2,
-        .pts_n = 0,
-        .max_pts_n = n2,
-        .th = &g2_th,
-        .f = sq
+        .max_pts_n = 0,
     };
+    my_graph_create_f(&g2, 1000, &g2_th, sq);
     my_theme_t g3_th = {
         .point = sfBlue,
         .radius = 13
@@ -55,18 +47,17 @@ int main(void)
         .params = (void *)(&ps)
     };
     my_graph_create_f2(&g3, 1000, &g3_th, sq2);
-    // my_theme_t g1_th = {
-    //     .point = sfRed,
-    //     .radius = 10
-    // };
+    my_theme_t g1_th = {
+        .point = sfRed,
+        .radius = 10
+    };
 
-    // my_graph_t g1 = {
-    //     .type = points,
-    //     .xs = xs,
-    //     .ys = ys,
-    //     .pts_n = n,
-    //     .th = &g1_th
-    // };
+    my_graph_t g1 = {
+        .max_pts_n = 0,
+    };
+
+    my_graph_create_pts(&g1, n, &g1_th);
+    my_graph_set_pts(&g1, xs, ys);
 
     my_theme_t plt_th = {
         .bg = sfBlack,
@@ -77,12 +68,11 @@ int main(void)
 
     my_plot_create(&plt, &plt_th);
 
-    // my_plot_append(&plt, &g1);
+    my_plot_append(&plt, &g1);
     my_plot_append(&plt, &g2);
     my_plot_append(&plt, &g3);
 
     my_plot_show(&plt);
-    printf("hhelo\n");
 
     my_plot_free(&plt);
     return 0;
