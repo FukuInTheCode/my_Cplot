@@ -94,7 +94,6 @@ int main(void)
     my_plot_create(&plt, &plt_th);
 
     my_plot_show(&plt);
-    // free
-    sfRenderWindow_destroy(plt.window);
+    
     return 0;
 }
