@@ -13,8 +13,12 @@ void my_plot_append(my_plot_t *plt, my_graph_t *g)
 
     plt->gs[(plt->gs_n)++] = g;
 
-    calc_ratio(plt);
+    if (g->type == function)
+        my_plot_func(plt, g);
+    else if (g->type == function2)
+        my_plot_func2(plt, g);
 
+    calc_ratio(plt);
     if (plt->gs_n > 1)
         free(tmp);
 }
