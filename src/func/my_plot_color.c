@@ -1,6 +1,6 @@
 #include "../../includes/my.h"
 
-sfColor interpolateColor(sfColor color1, sfColor color2, float value)
+sfColor interpolate_color(sfColor color1, sfColor color2, float value)
 {
     sfColor result;
 
