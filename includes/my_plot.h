@@ -65,5 +65,6 @@ void my_plot_pts(my_plot_t *plt, my_graph_t *g);
 void my_plot_func(my_plot_t *plt, my_graph_t *g);
 void my_plot_func2(my_plot_t *plt, my_graph_t *g);
 void my_plot_free(my_plot_t *plt);
+void my_plot_append(my_plot_t *plt, my_graph_t *g);
 
 #endif
