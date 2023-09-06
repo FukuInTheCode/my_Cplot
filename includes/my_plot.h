@@ -72,5 +72,6 @@ void calc_ratio(my_plot_t *plt);
 void my_graph_create_f2(my_graph_t *g, uint32_t n, my_theme_t *th, func2 f);
 void my_graph_create_f(my_graph_t *g, uint32_t n, my_theme_t *th, func f);
 void my_graph_create_pts(my_graph_t *g, uint32_t n, my_theme_t *th);
+void my_graph_set_pts(my_graph_t *g, double *xs, double *ys);
 
 #endif
