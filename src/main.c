@@ -60,11 +60,9 @@ int main(void)
 
     my_plot_create(&plt, &plt_th);
 
-    // my_plot_append(&plt, &g1);
-    // my_plot_append(&plt, &g2);
+    my_plot_append(&plt, &g1);
     my_plot_append(&plt, &g3);
-
-    printf("%lf, %lf\n", plt.ratio.x, plt.ratio.y);
+    my_plot_append(&plt, &g2);
 
     my_plot_show(&plt);
 
