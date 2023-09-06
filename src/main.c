@@ -87,6 +87,7 @@ int main(void)
     my_plot_create(&plt, &plt_th);
 
     my_plot_append(&plt, &g1);
+    printf("Hello\n");
 
     my_plot_show(&plt);
 
