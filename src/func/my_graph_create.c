@@ -22,3 +22,11 @@ void my_graph_create_f(my_graph_t *g, uint32_t n, my_theme_t *th, func f)
     g->pts_n = 0;
     g->f = f;
 }
+
+void my_graph_create_f2(my_graph_t *g, uint32_t n, my_theme_t *th, func2 f)
+{
+    g->type = function;
+    create(g, n, th);
+    g->pts_n = 0;
+    g->f2 = f;
+}
