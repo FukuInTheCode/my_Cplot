@@ -6,6 +6,8 @@
 
 #define PLOT_DECLA(nvar, ti) my_plot_t nvar = {.title = #ti, .gs_n = 0}
 
+#define GRAPH_DECLA(name) my_graph_t name = {.max_pts_n = 0};
+
 typedef double (*func)(double);
 typedef double (*func2)(double, void *);
 
