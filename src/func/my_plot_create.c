@@ -13,6 +13,6 @@ void my_plot_create(my_plot_t *plt, my_theme_t *th)
     plt->zoom.y = 0;
     plt->th = th;
     sfVector2u window_size = sfRenderWindow_getSize(plt->window);
-    plt->ratio.x = window_size.x / 0.1 / 2;
-    plt->ratio.y = window_size.y / 0.1 / 2;
+    plt->ratio.x = window_size.x / (20. * 0.1) / 2;
+    plt->ratio.y = window_size.y / (20. * 0.1)  / 2;
 }
